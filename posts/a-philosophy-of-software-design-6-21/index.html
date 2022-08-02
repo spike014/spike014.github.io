@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>About 《A Philosophy of Software Design》6-21 - spike014 site</title><meta name="Description" content="spike014 site"><meta property="og:title" content="About 《A Philosophy of Software Design》6-21" />
+<meta property="og:description" content="About 《A Philosophy of Software Design》6-21 原书： 2018 ed : https://milkov.tech/assets/psd.pdf 2021 ed : https://web.stanford.edu/~ouster/cgi-bin/aposd2ndEdExtract.pdf 通用模块更深入 如果减少 API 中的方法数量而不降低其整体功能，则可能正在创建更多通用的方法" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://spike014.github.io/posts/a-philosophy-of-software-design-6-21/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-01T11:52:39+08:00" />
+<meta property="article:modified_time" content="2022-08-01T11:52:39+08:00" /><meta property="og:site_name" content="spike014 site" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="About 《A Philosophy of Software Design》6-21"/>
+<meta name="twitter:description" content="About 《A Philosophy of Software Design》6-21 原书： 2018 ed : https://milkov.tech/assets/psd.pdf 2021 ed : https://web.stanford.edu/~ouster/cgi-bin/aposd2ndEdExtract.pdf 通用模块更深入 如果减少 API 中的方法数量而不降低其整体功能，则可能正在创建更多通用的方法"/>
+<meta name="application-name" content="spike014 site">
+<meta name="apple-mobile-web-app-title" content="spike014 site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://spike014.github.io/posts/a-philosophy-of-software-design-6-21/" /><link rel="prev" href="http://spike014.github.io/posts/about-a-philosophy-of-software-design-1-5/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "About 《A Philosophy of Software Design》6-21",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/spike014.github.io\/posts\/a-philosophy-of-software-design-6-21\/"
+        },"genre": "posts","wordcount":  5137 ,
+        "url": "http:\/\/spike014.github.io\/posts\/a-philosophy-of-software-design-6-21\/","datePublished": "2022-08-01T11:52:39+08:00","dateModified": "2022-08-01T11:52:39+08:00","license": "spike014","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "spike014"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="spike014 site"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="spike014 site"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">About 《A Philosophy of Software Design》6-21</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/spike014" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>spike014</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-01">2022-08-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;5137 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;11 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#about-a-philosophy-of-software-design6-21">About 《A Philosophy of Software Design》6-21</a>
+      <ul>
+        <li><a href="#通用模块更深入">通用模块更深入</a></li>
+        <li><a href="#不同层不同抽象">不同层，不同抽象</a>
+          <ul>
+            <li><a href="#直通方法">直通方法</a></li>
+            <li><a href="#装饰器">装饰器</a></li>
+            <li><a href="#接口与实现">接口与实现</a></li>
+            <li><a href="#结论">结论</a></li>
+          </ul>
+        </li>
+        <li><a href="#降低复杂性">降低复杂性</a></li>
+        <li><a href="#一起实现还是分开实现">一起实现，还是分开实现</a></li>
+        <li><a href="#异常">异常</a>
+          <ul>
+            <li><a href="#异常增加复杂性">异常增加复杂性</a></li>
+            <li><a href="#过多异常">过多异常</a></li>
+          </ul>
+        </li>
+        <li><a href="#设计两次">设计两次</a></li>
+        <li><a href="#注释相关">注释相关</a></li>
+        <li><a href="#好的命名">好的命名</a></li>
+        <li><a href="#一致性">一致性</a></li>
+        <li><a href="#代码应该显而易见">代码应该显而易见</a></li>
+        <li><a href="#结论-1">结论</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="about-a-philosophy-of-software-design6-21">About 《A Philosophy of Software Design》6-21</h1>
+<blockquote>
+<p>原书：</p>
+<p>2018 ed : <a href="https://milkov.tech/assets/psd.pdf" target="_blank" rel="noopener noreffer ">https://milkov.tech/assets/psd.pdf</a></p>
+<p>2021 ed : <a href="https://web.stanford.edu/~ouster/cgi-bin/aposd2ndEdExtract.pdf" target="_blank" rel="noopener noreffer ">https://web.stanford.edu/~ouster/cgi-bin/aposd2ndEdExtract.pdf</a></p>
+</blockquote>
+<h2 id="通用模块更深入">通用模块更深入</h2>
+<p>如果减少 API 中的方法数量而不降低其整体功能，则可能正在创建更多通用的方法。</p>
+<p><strong>在多少情况下会使用此方法？</strong> 如果一种方法是为特定用途而设计的，那是一个危险信号，它可能太特殊了。看看是否可以用一个通用方法替换几种专用方法。</p>
+<p>通用接口比专用接口具有许多优点。它们往往更简单，使用的方法更少。它们还提供了类之间的更清晰的分隔，而专用接口则倾向于在类之间泄漏信息。<strong>使模块具有某种通用性是降低整体系统复杂性的最佳方法之一。</strong></p>
+<h2 id="不同层不同抽象">不同层，不同抽象</h2>
+<h3 id="直通方法">直通方法</h3>
+<p>直通方法是一种不执行任何操作的方法，只是将其参数传递给另一个方法，通常使用与直通方法相同的 API。这通常表示各类之间没有明确的职责划分。</p>
+<p>直通方法使类变浅：它们增加了类的接口复杂性，从而增加了复杂性，但是并没有增加系统的整体功能。</p>
+<p>解决方法：</p>
+<a class="lightgallery" href="/images/UtQHQx.png" title="/images/UtQHQx.png" data-thumbnail="/images/UtQHQx.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/images/UtQHQx.png"
+            data-srcset="/images/UtQHQx.png, /images/UtQHQx.png 1.5x, /images/UtQHQx.png 2x"
+            data-sizes="auto"
+            alt="/images/UtQHQx.png" width="400" height="400" />
+    </a>
+<h3 id="装饰器">装饰器</h3>
+<p>创建装饰器类之前，请考虑以下替代方法：</p>
+<ul>
+<li>
+<p>您能否将新功能直接添加到基础类，而不是创建装饰器类？如果新功能是相对通用的，或者在逻辑上与基础类相关，或者如果基础类的大多数使用也将使用新功能，则这是有意义的。例如，几乎每个创建 <code>Java</code> <code>InputStream</code> 的人都会创建一个  <code>BufferedInputStream</code>，并且缓冲是 <code>I/O</code> 的自然组成部分，因此应该合并这些类。</p>
+</li>
+<li>
+<p>如果新功能专用于特定用例，将其与用例合并而不是创建单独的类是否有意义？</p>
+</li>
+<li>
+<p>您可以将新功能与现有的装饰器合并，而不是创建新的装饰器吗？这将导致一个更深的装饰器类，而不是多个浅的装饰器类。 最后，问问自己新功能是否真的需要包装现有功能：是否可以将其实现为独立于基类的独立类？在窗口示例中，滚动条可能与主窗口分开实现，而无需包装其所有现有功能。</p>
+</li>
+</ul>
+<h3 id="接口与实现">接口与实现</h3>
+<p>跨层 API 复制的另一种形式是传递变量，该变量是通过一长串方法向下传递的变量。</p>
+<p>传递变量增加了复杂性，因为它们强制所有中间方法知道它们的存在，即使这些方法对变量没有用处。</p>
+<a class="lightgallery" href="/images/UtlIHS.png" title="/images/UtlIHS.png" data-thumbnail="/images/UtlIHS.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/images/UtlIHS.png"
+            data-srcset="/images/UtlIHS.png, /images/UtlIHS.png 1.5x, /images/UtlIHS.png 2x"
+            data-sizes="auto"
+            alt="/images/UtlIHS.png" width="400" height="400" />
+    </a>
+<p>消除传递变量可能具有挑战性。</p>
+<ul>
+<li>
+<p>一种方法是查看最顶层和最底层方法之间是否已共享对象  (b)。</p>
+</li>
+<li>
+<p>另一种方法是将信息存储在全局变量中，如图 (c) 所示。这避免了将信息从一个方法传递到另一个方法的需要，但是全局变量几乎总是会产生其他问题。</p>
+</li>
+<li>
+<p>我（本书作者）最常使用的解决方案是引入一个上下文对象 (d)。每个系统实例只有一个上下文对象。上下文允许系统的多个实例在单个进程中共存，每个实例都有自己的上下文。</p>
+<p>不幸的是，<strong>在许多地方可能都需要上下文，因此它有可能成为传递变量</strong>。为了减少必须意识到的方法数量，可以将上下文的引用保存在系统的大多数主要对象中。</p>
+<p>上下文对象统一了所有系统全局信息的处理，并且不需要传递变量。如果需要添加新变量，则可以将其添加到上下文对象；除了上下文的构造函数和析构函数外，现有代码均不受影响。由于上下文全部存储在一个位置，因此上下文可以轻松识别和管理系统的全局状态。上下文也便于测试：测试代码可以通过修改上下文中的字段来更改应用程序的全局配置。如果系统使用传递变量，则实施此类更改将更加困难。</p>
+<p>上下文远非理想的解决方案。存储在<strong>上下文中的变量具有全局变量的大多数缺点</strong>。例如，为什么存在特定变量或在何处使用特定变量可能并不明显。没有纪律，上下文会变成巨大的数据抓包，从而在整个系统中创建不明显的依赖关系。上下文也可能产生线程安全问题；避免问题的最佳方法是使上下文中的变量不可变。不幸的是，我没有找到比上下文更好的解决方案。</p>
+</li>
+</ul>
+<h3 id="结论">结论</h3>
+<p>接口，参数，函数，类或定义之类的添加到系统中的每个设计基础架构都会增加复杂性，因为开发人员必须了解该元素。为了使元素能够提供相对于复杂性的净收益，它必须消除在没有设计元素的情况下会出现的一些复杂性。否则，最好不要使用该特定元素来实施系统。例如，一个类可以通过封装功能来降低复杂性，以使该类的用户无需意识到这一点。</p>
+<p>“不同的层，不同的抽象” 规则只是此思想的一种应用：如果不同的层具有相同的抽象，例如直通方法或装饰器，则很有可能它们没有提供足够的利益来补偿它们代表的其他基础结构。类似地，传递参数要求几种方法中的每一种都知道它们的存在（这增加了复杂性），而又不提供其他功能。</p>
+<h2 id="降低复杂性">降低复杂性</h2>
+<p>应该让模块用户处理复杂性，还是应该在模块内部处理复杂性？</p>
+<p>配置参数还提供了一个轻松的借口，可以避免处理重要问题并将其传递给其他人。在许多情况下，用户或管理员很难或无法确定参数的正确值。在其他情况下，<strong>可以通过在系统实现中进行一些额外的工作来自动确定正确的值</strong>。考虑必须处理丢失数据包的网络协议。如果它发送请求但在一定时间内未收到响应，则重新发送该请求。确定重试间隔的一种方法是引入配置参数。但是，传输协议可以通过测量成功请求的响应时间，然后将其倍数用于重试间隔，自己计算出一个合理的值。这种方法降低了复杂性，使用户不必找出正确的重试间隔。它具有动态计算重试间隔的其他优点，因此，如果操作条件发生变化，它将自动进行调整。相反，配置参数很容易过时。</p>
+<p>因此，您应<strong>尽可能避免使用配置参数</strong>。在导出配置参数之前，请问自己：“用户（或更高级别的模块）是否能够确定比我们在此确定的更好的值？” 当您创建配置参数时，请查看是否可以自动计算合理的默认值，因此用户仅需在特殊情况下提供值即可。理想情况下，每个模块都应完全解决问题。配置参数导致解决方案不完整，从而增加了系统复杂性。</p>
+<blockquote>
+<p>这里是说的避免使用配置参数，对部分参数可以给出默认值。并非对全部配置的修改不开放。</p>
+</blockquote>
+<h2 id="一起实现还是分开实现">一起实现，还是分开实现</h2>
+<p>拆分或加入模块的决定应基于复杂性。选择一种结构，它可以隐藏最佳的信息，最少的依赖关系和最深的接口。</p>
+<h2 id="异常">异常</h2>
+<h3 id="异常增加复杂性">异常增加复杂性</h3>
+<p>大型系统必须应对许多特殊情况，特别是在它们是分布式的或需要容错的情况下。异常处理可以占系统中所有代码的很大一部分。</p>
+<blockquote>
+<p>我还以为说的是测试代码，对于像 <code>Gin</code> 这种框架来说，确实是测试代码占有很大的比例的。</p>
+<p>至于，异常处理？</p>
+<p><code>Golang</code> 的 <code>if err != nil {...}</code> 不算吗？😆 ；</p>
+<p>不过这个确实我喜欢 <code>Golang</code> 的原因，简单，直接，不需要一堆 <code>try catch</code>，就像和喜欢的女孩子相处，就 <code>TM</code> 应该直球打过去。</p>
+</blockquote>
+<p>为了防止无休止的异常级联，开发人员最终必须找到一种在不引入更多异常的情况下处理异常的方法。</p>
+<blockquote>
+<p>这里不得不又感叹 <code>Golang</code> 带来的便捷，通过使用 <code>channel</code> 和 <code>context</code> 可以进行异步通信，通知流程中断。</p>
+</blockquote>
+<p>最近的一项研究发现，分布式数据密集型系统中超过 <code>90％</code> 的灾难性故障是由错误的错误处理引起的。当异常处理代码失败时，很难调试该问题，因为它很少发生。</p>
+<blockquote>
+<p>因为错误的原因千奇百怪，在未发生之前，往往很难预测他出现的形态。</p>
+</blockquote>
+<h3 id="过多异常">过多异常</h3>
+<p>试图使用异常来避免处理困难的情况很诱人：与其想出一种干净的方法来处理它，不如抛出一个异常并将问题平移给调用者。有人可能会争辩说，这种方法可以赋予调用者权力，因为它允许每个调用者以不同的方式处理异常。但是，<strong>如果您在确定特定情况下该怎么做时遇到困难，则呼叫者很可能都不知道该怎么办。在这种情况下生成异常只会将问题传递给其他人，并增加系统的复杂性</strong>。</p>
+<p>抛出异常很容易；处理它们很困难。因此，异常的复杂性来自异常处理代码。减少由异常处理引起的复杂性破坏的最佳方法是减少必须处理异常的位置的数量。</p>
+<blockquote>
+<p>这里暂时不是很认同。及时抛出异常，让调用方去处理，个人认为才是最及时止损的方式。</p>
+</blockquote>
+<p>与软件设计中的许多其他领域一样，您必须确定哪些是重要的，哪些是不重要的。不重要的事物应该被隐藏起来，它们越多越好。但是，当某件事很重要时，必须将其暴露出来。</p>
+<blockquote>
+<p>本章基本都在强调，不要过分地抛出异常，使得调用方需要过多地处理异常，增加复杂性。暴露必要的错误，这个需要很强的设计功底。</p>
+</blockquote>
+<h2 id="设计两次">设计两次</h2>
+<p>设计软件非常困难，因此您对如何构造模块或系统的初步思考不太可能会产生最佳的设计。<strong>如果为每个主要设计决策考虑多个选项，最终将获得更好的结果：设计两次。</strong></p>
+<p><strong>“两次设计”方法不仅可以改善您的设计，而且可以提高您的设计技能</strong>。设计和比较多种方法的过程将教您使设计更好或更坏的因素。随着时间的流逝，这将使您更容易排除不良的设计并磨练真正的出色设计。</p>
+<h2 id="注释相关">注释相关</h2>
+<p>当遵循注释应描述代码中不明显的内容的规则时，“明显”是从第一次读取您的代码的人（不是您）的角度出发。在撰写注释时，请尝试使自己进入读者的心态，并问自己他或她需要知道哪些关键事项。如果您的代码正在接受审核，并且审核者告诉您某些不明显的内容，请不要与他们争论。**如果读者认为它不明显，那么它就不明显。**不用争论，而是尝试了解他们发现的令人困惑的地方，并查看是否可以通过更好的注释或更好的代码来澄清它们。</p>
+<p>**如果您从未尝试过先编写注释，请尝试一下。**坚持足够长的时间来习惯它。然后考虑它如何影响您的注释质量，设计质量以及软件开发的整体乐趣。在尝试了一段时间之后，让我知道您的经历是否与我的相符，以及为什么或为什么不这样。</p>
+<h2 id="好的命名">好的命名</h2>
+<p><strong>精心选择的名称有助于使代码更明显</strong>。当某人第一次遇到该变量时，他们对行为的第一次猜测是正确的。选择好名字是第 3 章讨论的投资思维方式的一个示例：如果您花一些额外的时间来选择好名字，那么将来您将更容易处理代码。此外，您不太可能引入错误。培养命名技巧也是一项投资。当您第一次决定停止为平庸的名字定居时，您会发现想出好名字的过程既令人沮丧又耗时。但是，随着您获得更多的经验，您会发现它变得更加容易。最终，您将几乎不需要花费额外的时间来选择好名字，因此您几乎可以免费获得好处。</p>
+<h2 id="一致性">一致性</h2>
+<p><strong>不要更改现有约定</strong>。<strong>抵制“改善”现有公约的冲动</strong>。拥有一个“更好的主意”不足以引起矛盾。您的新想法可能确实更好，但是一致性胜于不一致的价值几乎总是大于一种方法胜过另一种方法的价值。在引入不一致的行为之前，请问自己两个问题。</p>
+<ul>
+<li>首先，您是否拥有大量的新信息来证明您的方法在建立旧约定时是不可用的？</li>
+<li>其次，新方法是否好得多，值得花时间更新所有旧用法？</li>
+</ul>
+<p>如果您的组织同意对两个问题的回答均为“是”，则继续进行升级；否则，请进行升级。完成后，应该没有旧约定的迹象。然而，您仍然冒着其他开发人员不了解新约定的风险，因此他们将来可能会重新引入旧方法。总体而言，重新考虑已建立的约定很少能利用好开发人员的时间。</p>
+<p>一致性是投资心态的另一个例子。<strong>确保一致性的工作将需要一些额外的工作</strong>：</p>
+<ul>
+<li>确定约定，</li>
+<li>创建自动检查程序，</li>
+<li>寻找类似情况以模仿新代码，</li>
+<li>进行代码审查以教育团队。</li>
+</ul>
+<p>这项投资的回报是您的代码将更加明显。开发人员将能够更快，更准确地了解代码的行为，这将使他们能够以更少的错误来更快地工作。</p>
+<h2 id="代码应该显而易见">代码应该显而易见</h2>
+<p>为了使代码清晰可见，您必须确保读者始终拥有理解它们所需的信息。您可以通过<strong>三种方式</strong>执行此操作。</p>
+<ul>
+<li>最好的方法是使用抽象等设计技术并消除特殊情况，以减少所需的信息量。</li>
+<li>其次，您可以利用读者在其他情况下已经获得的信息（例如，通过遵循约定并符合期望），从而使读者不必为代码学习新的信息。</li>
+<li>第三，您可以使用诸如好名和战略注释之类的技术在代码中向他们提供重要信息。</li>
+</ul>
+<h2 id="结论-1">结论</h2>
+<p>这本书是关于一件事的：<strong>复杂性</strong>。处理复杂性是软件设计中最重要的挑战。这是使系统难以构建和维护的原因，并且通常也使它们变慢。在本书的整个过程中，我试图描述导致复杂性的根本原因，例如<strong>依赖性和模糊性</strong>。我已经讨论了可以帮助您识别不必要的复杂性的危险标记，例如信息泄漏，不必要的错误情况或名称过于笼统。我已经提出了一些通用的思想，可以用来创建更简单的软件系统，例如，努力研究更深和更通用的类，定义不存在的错误以及将接口文档与实现文档分离。最后，我讨论了产生简单设计所需的投资思路。</p>
+<p>所有这些建议的<strong>缺点</strong>是它们会在项目的早期阶段创建额外的工作。此外，如果您不习惯于思考设计问题，那么当您学习良好的设计技巧时，您甚至会放慢脚步。如果对您而言唯一重要的事情就是尽快使当前代码工作，那么思考设计就好像是在费劲工作，而这实际上妨碍了您实现真正的目标。</p>
+<p>另一方面，如果良好的设计对您来说是重要的目标，那么本书中的思想应使编程更有趣。设计是一个令人着迷的难题：如何用最简单的结构解决特定问题？探索不同的方法很有趣，找到一种既简单又强大的解决方案是一种很好的感觉。<strong>干净，简单和明显的设计是一件美丽的事情。</strong></p>
+<p>此外，您对优质设计的投资将很快获得回报。**在项目开始时仔细定义的模块将为您节省时间，因为您一遍又一遍地重复使用它们。**您六个月前编写的清晰文档将为您节省返回代码添加新功能的时间。花在磨练设计技能上的时间也将有所回报：随着技能和经验的增长，您会发现可以越来越快地制作出好的设计。<strong>一旦知道了什么，一个好的设计实际上并不会比一个简单的设计花费更多的时间。</strong></p>
+<p>成为优秀设计师的好处是，您可以在设计阶段花费大部分时间，这很有趣。可怜的设计师花费大量时间在复杂而脆弱的代码中寻找错误。<strong>如果提高设计技能，不仅可以更快地生产出更高质量的软件，而且软件开发过程也将变得更加愉快。</strong></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-08-01</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://spike014.github.io/posts/a-philosophy-of-software-design-6-21/" data-title="About 《A Philosophy of Software Design》6-21"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://spike014.github.io/posts/a-philosophy-of-software-design-6-21/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://spike014.github.io/posts/a-philosophy-of-software-design-6-21/" data-title="About 《A Philosophy of Software Design》6-21"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://spike014.github.io/posts/a-philosophy-of-software-design-6-21/" data-title="About 《A Philosophy of Software Design》6-21"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://spike014.github.io/posts/a-philosophy-of-software-design-6-21/" data-title="About 《A Philosophy of Software Design》6-21"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/about-a-philosophy-of-software-design-1-5/" class="prev" rel="prev" title="About 《A Philosophy of Software Design》1-5"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>About 《A Philosophy of Software Design》1-5</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/spike014" target="_blank">spike014</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"data":{"id-1":"spike014 site","id-2":"spike014 site"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":80}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
