@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>谷歌软件工程之道-1 - spike014 site</title><meta name="Description" content="spike014 site"><meta property="og:title" content="谷歌软件工程之道-1" />
+<meta property="og:description" content="《Software Engineering at Google》： 前言，序言 什么是软件工程？ EN: https://abseil.io/resources/swe-book/html/toc.html CN: https://qiangmzsx.github.io/Software-Engineering-at-Google/#/ 前言 技术的伟大之处在于，做一件事永远不会只有一种方法。相反，有一系列" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://spike014.github.io/posts/aboutsoftware-engineering-at-google/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-03T11:43:02+08:00" />
+<meta property="article:modified_time" content="2022-08-03T11:43:02+08:00" /><meta property="og:site_name" content="spike014 site" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="谷歌软件工程之道-1"/>
+<meta name="twitter:description" content="《Software Engineering at Google》： 前言，序言 什么是软件工程？ EN: https://abseil.io/resources/swe-book/html/toc.html CN: https://qiangmzsx.github.io/Software-Engineering-at-Google/#/ 前言 技术的伟大之处在于，做一件事永远不会只有一种方法。相反，有一系列"/>
+<meta name="application-name" content="spike014 site">
+<meta name="apple-mobile-web-app-title" content="spike014 site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://spike014.github.io/posts/aboutsoftware-engineering-at-google/" /><link rel="prev" href="http://spike014.github.io/posts/a-philosophy-of-software-design-6-21/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "谷歌软件工程之道-1",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/spike014.github.io\/posts\/aboutsoftware-engineering-at-google\/"
+        },"genre": "posts","wordcount":  3372 ,
+        "url": "http:\/\/spike014.github.io\/posts\/aboutsoftware-engineering-at-google\/","datePublished": "2022-08-03T11:43:02+08:00","dateModified": "2022-08-03T11:43:02+08:00","license": "spike014","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "spike014"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="spike014 site"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="spike014 site"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">谷歌软件工程之道-1</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/spike014" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>spike014</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-03">2022-08-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3372 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#前言">前言</a></li>
+        <li><a href="#序言">序言</a></li>
+        <li><a href="#什么是软件工程">什么是软件工程？</a>
+          <ul>
+            <li><a href="#时间与变化">时间与变化</a>
+              <ul>
+                <li><a href="#海勒姆定律">海勒姆定律</a></li>
+              </ul>
+            </li>
+            <li><a href="#规模与效率">规模与效率</a>
+              <ul>
+                <li><a href="#示例编译器升级">示例：编译器升级</a></li>
+                <li><a href="#左移">左移</a></li>
+              </ul>
+            </li>
+            <li><a href="#权衡和成本">权衡和成本</a></li>
+            <li><a href="#重审决策标记错误">重审决策，标记错误</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>《Software Engineering at Google》：</p>
+<ul>
+<li>前言，序言</li>
+<li>什么是软件工程？</li>
+</ul>
+<blockquote>
+<p>EN: <a href="https://abseil.io/resources/swe-book/html/toc.html" target="_blank" rel="noopener noreffer ">https://abseil.io/resources/swe-book/html/toc.html</a></p>
+<p>CN: <a href="https://qiangmzsx.github.io/Software-Engineering-at-Google/#/" target="_blank" rel="noopener noreffer ">https://qiangmzsx.github.io/Software-Engineering-at-Google/#/</a></p>
+</blockquote>
+<h2 id="前言">前言</h2>
+<p>技术的伟大之处在于，做一件事永远不会只有一种方法。相反，有一系列的权衡，我们都必须根据我们的团队和现状来选择。</p>
+<p>如果认为运行你的软件工程组织的正确方法是精确地复制他们的模式，那就太愚蠢了。在实际应用中，这本书会给你提供关于如何做事情的想法，以及很多信息，你可以用这些信息来支持你采用最佳实践的论据，如测试、知识共享和建立协作团队。</p>
+<blockquote>
+<p>看菜吃饭，经过权衡之后，选择适合当前规模的模式。</p>
+</blockquote>
+<h2 id="序言">序言</h2>
+<p>本书强调了三个基本原则，我们认为软件组织在设计、架构和编写代码时应该牢记这些原则：</p>
+<ul>
+<li><strong>时间和变化</strong>​代码会如何在其生命周期内进行适配。</li>
+<li><strong>规模和增长</strong>​一个组织会如何适应它的发展过程。</li>
+<li><strong>权衡和成本</strong>​一个组织如何根据时间和变化以及规模和增长的经验教训做出决策。</li>
+</ul>
+<h2 id="什么是软件工程">什么是软件工程？</h2>
+<p>在一个软件工程项目中，工程师需要更多关注<strong>时间成本和需求变更</strong>。</p>
+<p>在软件工程中，我们需要更加关注<strong>规模和效率</strong>，无论是对我们生产的软件，还是对生产软件的组织。</p>
+<p>最后，作为软件工程师，我们被要求做出更复杂的决策，其结果风险更大，而且往往是基于对时间和规模增长的不确定性的<strong>预估</strong>。</p>
+<p><strong>软件工程是随着时间推移的编程。</strong> 编程当然是软件工程的一个重要部分：毕竟，编程首先是生成新软件的方式。如果你接受这一区别，那么很明显，<strong>我们可能需要在编程任务（开发）和软件工程任务（开发、修改、维护）之间进行划分。</strong> <strong>时间</strong>的增加为编程增加了一个重要的新维度。这是一个立方体三维模型不是正方形的二维模型，距离不是速度。软件工程不是编程。</p>
+<p>了解时间对程序的影响的一种方法是思考“代码的预期生命周期是多少？”（这里生命周期指 <strong>“维护生命周期”</strong> —— <strong>代码将持续构建、执行和维护多长时间？这个软件能提供多长时间的价值？</strong>）</p>
+<p>随着我们扩大时间维度，允许更长的生命周期，改变显得更加重要。</p>
+<blockquote>
+<p>的确，对于只是短期存在的代码，是不需要考虑太多的，也不值得投入太多，因为像上面说的，时间这个维度已经被压缩地非常低，所以这可能会是一个“海拔”并不太高的细小长方体。</p>
+<p>对于将会存在相当长一段时间的代码来说，任何一种细微的变化，都将可能影响到他本来已经稳定的工作。这是需要投入相对等的时间去进行<strong>工程建设</strong>的。</p>
+</blockquote>
+<p>这种区别是我们所说的<strong>软件可持续性</strong>的核心。如果在软件的预期生命周期内，你<strong>能够</strong>对任何有价值的变化做出反应，无论是技术还是商业原因，那么你的项目是可持续的。</p>
+<blockquote>
+<p>这里说的是，已经因为依赖项已经不被支持（维护）等而无法做出改变，或者是已经到了不能改，改不了的地步，这个时候，这个项目已经是真正意义上的<strong>屎山</strong>（危楼）了。</p>
+</blockquote>
+<p>当你基本上无法对基础技术或产品方向的变化做出反应时，你就把高风险赌注押在希望这种变化永远不会变得至关重要。</p>
+<blockquote>
+<p>比如操作系统升级，<code>Node</code> 版本升级等。</p>
+</blockquote>
+<p>另一种看待软件工程的方法是考虑规模。</p>
+<p>软件工程和程序设计之间的区别是时间和人的区别。团队协作带来了新的问题，但也提供了比任何单个程序员更多的潜力来产生有价值的系统。</p>
+<h3 id="时间与变化">时间与变化</h3>
+<p>下图演示了两个软件项目的“预期生命周期”的范围。对于从事预期生命周期为小时的任务的程序来说，什么类型的维护是合理的？也就是说，如果在编写一个<code>Python</code>脚本时出现了一个新版本的操作系统，该脚本将执行一次，你应该放弃你正在做的事情并升级吗？当然不是：升级并不是紧急的。但与此相反，谷歌搜索停留在 20 世纪 90 年代的操作系统版本上显然是一个问题。</p>
+<a class="lightgallery" href="/images/figure%201-1.png" title="/images/figure 1-1.png" data-thumbnail="/images/figure 1-1.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/images/figure%201-1.png"
+            data-srcset="/images/figure%201-1.png, /images/figure%201-1.png 1.5x, /images/figure%201-1.png 2x"
+            data-sizes="auto"
+            alt="/images/figure 1-1.png" />
+    </a>
+<p>不仅完成了第一次大升级，而且达到可靠地保持当前状态的程度，这是项目长期可持续性的本质。可持续性要求规划和管理所需变化的影响。对于谷歌的许多项目，我们相信我们已经实现了这种持续能力，主要是通过<strong>试验和错误</strong>。</p>
+<p>那么，具体来说，短期编程与生成预期生命周期更长的代码有何不同？随着时间的推移，我们需要更多地意识到“<strong>正常工作</strong>”和“<strong>可维护</strong>”之间的区别。识别这些问题没有完美的解决方案。这是不幸的，因为保持软件的长期可维护性是一场持久战。</p>
+<h4 id="海勒姆定律">海勒姆定律</h4>
+<p>如果你正在维护一个由其他工程师使用的项目，那么关于“有效”与“可维护”最重要的一课就是我们所说的海勒姆定律：
+当一个 API 有足够多的用户的时候，在约定中你承诺的什么都无所谓，<strong>所有在你系统里面被观察到的行为都会被一些用户直接依赖。</strong></p>
+<p>思考一下用“当前可用”和“一直可用”心态编写的代码之间的差异，我们可以提取出一些明确的关系。将代码视为具有（高度）可变生命周期需求的构件，我们可以开始对编程风格进行分类：<strong>依赖其依赖性的脆弱和未发布特性的代码</strong>可能被描述为“黑客”或“聪明”而遵循最佳实践并为未来规划的代码更可能被描述为“干净”和“可维护”。两者都有其目的，但你选择哪一个关键取决于所讨论代码的预期生命周期。我们常说，<strong>“如果‘聪明’是一种恭维，那就是程序，如果‘聪明’是一种指责，那就是软件工程。”</strong></p>
+<blockquote>
+<p>这里吐槽下，一些人在公司代码添加自己编写的库，但是这个库不是封装无用的一层又一层，就是文档注释几乎为零，或两者兼之。这种聪明，徒增复杂性，“加强”可维护性，可谓万恶之源。<strong>在软件工程中，建议做一个开明的独裁者，强制最大共识的约定，防止坏味道泛滥。</strong></p>
+</blockquote>
+<p><strong>没有对可持续性的长期项目进行投入是存在巨大风险。</strong> 我们必须能够应对这些问题，并利用好机会，无论它们是否直接影响我们，或者仅仅表现为我们所建立的技术的过渡性封闭中。<strong>变化本质上不是好事。</strong> 我们不应该仅仅为了改变而改变。但我们确实需要有能力改变。如果我们考虑到最终的必要性，我们也应该考虑是否加大投入使这种能力变得简单易用（成本更低）。正如每个系统管理员都知道的那样，从理论上知道你可以从磁带恢复是一回事，在实践中确切地知道如何进行恢复以及在必要时需要花费多少钱是另一回事。实践和专业知识是效率和可靠性的重要驱动力。</p>
+<h3 id="规模与效率">规模与效率</h3>
+<p>“<strong>当你能够安全地改变你应该改变的所有事情，你的组织的代码库是可持续的，并且可以为你的代码库的生命做这样的事情。</strong>” 隐藏在能力的讨论中也是<strong>成本</strong>的一个方面：如果改变某事的代价太大，它可能会被推迟。如果成本随着时间的推移呈超线性增长，操作（这里指的是做出应有的改变）显然是不可扩展的（可以理解为无法做到的）。最终，时间会占据主导地位，出现一些意想不到的情况，你必须改变。</p>
+<p>软件的开发也需要进行扩展，包括人力时间的参与和支持开发工作流程的计算资源。如果测试集群的计算成本呈超线性增长，每个季度人均消耗更多的计算资源，那么你的项目就走上了一条不可持续的道路，需要尽快做出改变。</p>
+<p>最后，软件系统最宝贵的资产代码库本身也需要扩展。</p>
+<blockquote>
+<p>这个因为变更日志过多，内容增长，会影响到拉取的时间，完成构建的时间等等，时间越久的项目受影响会越大。</p>
+</blockquote>
+<h4 id="示例编译器升级">示例：编译器升级</h4>
+<p>潜在的教训不是关于编译器升级的频率或难度，而是一旦我们意识到编译器升级任务是必要的，我们就找到了方法，确保在代码库增长的情况下，由固定数量的工程师执行这些任务。</p>
+<h4 id="左移">左移</h4>
+<a class="lightgallery" href="/images/figure%201-2.png" title="/images/figure 1-2.png" data-thumbnail="/images/figure 1-2.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/images/figure%201-2.png"
+            data-srcset="/images/figure%201-2.png, /images/figure%201-2.png 1.5x, /images/figure%201-2.png 2x"
+            data-sizes="auto"
+            alt="/images/figure 1-2.png" />
+    </a>
+<p>安全问题不能推迟到开发过程的最后阶段，必须要求“在安全上<strong>向左转移</strong>”。</p>
+<p>根据新的安全约束规范进行开发，要比提交代码后再让其他人分类标识并修复它更简单。</p>
+<p>在提交之前通过静态分析和代码审查发现的 <code>bug</code> 要比投入生产的 <code>bug</code> 成本更低。在开发过程的早期提供高质量、可靠性和安全性的工具和实践是我们许多基础架构团队的共同目标。没有一个过程或工具是完美的，所以我们可以采取纵深防御的方法，希望尽早抓住图表左侧的缺陷。</p>
+<h3 id="权衡和成本">权衡和成本</h3>
+<p><strong>做出好的工程决策就是权衡所有可用的输入，并就权衡做出明智的决策。</strong> 有时，这些决策是基于本能或公认的最佳实践，但仅是一种假设之后，我们用尽了各种方法来衡量或估计真正的潜在成本。</p>
+<h3 id="重审决策标记错误">重审决策，标记错误</h3>
+<p>我们坚信数据能为决策提供信息，但我们也认识到数据会随着时间的推移而变化，新数据可能会出现。这意味着，<strong>本质上，在相关系统的生命周期内，需要不时地重新审视决策。</strong> 对于长期项目而言，在做出初始决策后，有能力改变方向通常是至关重要的。更重要的是，这意味着决策者需要勇气承认错误。与人的本能相反，勇于承认错误的领导人受更多的尊重。</p>
+<p>我们认为，<strong>区分相关但不同的术语“编程”和“软件工程”是很重要的。这种差异很大程度上源于随着时间的推移对代码的管理、时间对规模的影响以及面对这些想法的决策。</strong> 编程是产生代码的直接行为。软件工程是一组策略、实践和工具，这些策略、实践和工具是使代码在需要使用的时间内发挥作用，并允许整个团队的协作。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-08-03</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://spike014.github.io/posts/aboutsoftware-engineering-at-google/" data-title="谷歌软件工程之道-1"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://spike014.github.io/posts/aboutsoftware-engineering-at-google/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://spike014.github.io/posts/aboutsoftware-engineering-at-google/" data-title="谷歌软件工程之道-1"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://spike014.github.io/posts/aboutsoftware-engineering-at-google/" data-title="谷歌软件工程之道-1"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://spike014.github.io/posts/aboutsoftware-engineering-at-google/" data-title="谷歌软件工程之道-1"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/a-philosophy-of-software-design-6-21/" class="prev" rel="prev" title="软件设计哲学 6-21"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>软件设计哲学 6-21</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/spike014" target="_blank">spike014</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"data":{"id-1":"spike014 site","id-2":"spike014 site"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":150}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
