@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>性能优化 - Tag - spike014 site</title>
+        <link>http://spike014.github.io/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</link>
+        <description>性能优化 - Tag - spike014 site</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>spike014</copyright><lastBuildDate>Fri, 19 Aug 2022 15:49:38 &#43;0800</lastBuildDate><atom:link href="http://spike014.github.io/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="self" type="application/rss+xml" /><item>
+    <title>一个 Twitter 的负载例子</title>
+    <link>http://spike014.github.io/posts/example_from_twitter/</link>
+    <pubDate>Fri, 19 Aug 2022 15:49:38 &#43;0800</pubDate>
+    <author>spike014</author>
+    <guid>http://spike014.github.io/posts/example_from_twitter/</guid>
+    <description><![CDATA[两个 Twitter 的典型操作： 发布 tweet：用户可以快速推送新消息到所有关注者，平均 4.6k request/sec，峰值约 12k request/sec； 主页时间]]></description>
+</item>
+</channel>
+</rss>

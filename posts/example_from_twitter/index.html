@@ -4,32 +4,32 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>谷歌软件工程之道-2 - spike014 site</title><meta name="Description" content="spike014 site"><meta property="og:title" content="谷歌软件工程之道-2" />
-<meta property="og:description" content="《Software Engineering at Google》： 如何融入团队 知识共享 EN: https://abseil.io/resources/swe-book/html/toc.html CN: https://qiangmzsx.github.io/Software-Engineering-at-Google/#/ 一个好的事后总结应该包括以下内容： 事件的简要概述 事件的时间线，从发现、调查" />
+        <title>一个 Twitter 的负载例子 - spike014 site</title><meta name="Description" content="spike014 site"><meta property="og:title" content="一个 Twitter 的负载例子" />
+<meta property="og:description" content="两个 Twitter 的典型操作： 发布 tweet：用户可以快速推送新消息到所有关注者，平均 4.6k request/sec，峰值约 12k request/sec； 主页时间" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://spike014.github.io/posts/software-engineering-at-google-2/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-08-05T11:11:53+08:00" />
-<meta property="article:modified_time" content="2022-08-05T11:11:53+08:00" /><meta property="og:site_name" content="spike014 site" />
+<meta property="og:url" content="http://spike014.github.io/posts/example_from_twitter/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-19T15:49:38+08:00" />
+<meta property="article:modified_time" content="2022-08-19T15:49:38+08:00" /><meta property="og:site_name" content="spike014 site" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="谷歌软件工程之道-2"/>
-<meta name="twitter:description" content="《Software Engineering at Google》： 如何融入团队 知识共享 EN: https://abseil.io/resources/swe-book/html/toc.html CN: https://qiangmzsx.github.io/Software-Engineering-at-Google/#/ 一个好的事后总结应该包括以下内容： 事件的简要概述 事件的时间线，从发现、调查"/>
+<meta name="twitter:title" content="一个 Twitter 的负载例子"/>
+<meta name="twitter:description" content="两个 Twitter 的典型操作： 发布 tweet：用户可以快速推送新消息到所有关注者，平均 4.6k request/sec，峰值约 12k request/sec； 主页时间"/>
 <meta name="application-name" content="spike014 site">
 <meta name="apple-mobile-web-app-title" content="spike014 site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://spike014.github.io/posts/software-engineering-at-google-2/" /><link rel="prev" href="http://spike014.github.io/posts/aboutsoftware-engineering-at-google/" /><link rel="next" href="http://spike014.github.io/posts/example_from_twitter/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://spike014.github.io/posts/example_from_twitter/" /><link rel="prev" href="http://spike014.github.io/posts/software-engineering-at-google-2/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "谷歌软件工程之道-2",
+        "headline": "一个 Twitter 的负载例子",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "http:\/\/spike014.github.io\/posts\/software-engineering-at-google-2\/"
-        },"genre": "posts","keywords": "book","wordcount":  862 ,
-        "url": "http:\/\/spike014.github.io\/posts\/software-engineering-at-google-2\/","datePublished": "2022-08-05T11:11:53+08:00","dateModified": "2022-08-05T11:11:53+08:00","license": "spike014","publisher": {
+            "@id": "http:\/\/spike014.github.io\/posts\/example_from_twitter\/"
+        },"genre": "posts","keywords": "性能优化","wordcount":  699 ,
+        "url": "http:\/\/spike014.github.io\/posts\/example_from_twitter\/","datePublished": "2022-08-19T15:49:38+08:00","dateModified": "2022-08-19T15:49:38+08:00","license": "spike014","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -100,70 +100,92 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">谷歌软件工程之道-2</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">一个 Twitter 的负载例子</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/spike014" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>spike014</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-05">2022-08-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;862 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-19">2022-08-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;699 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
-            </div><div class="content" id="content"><p>《Software Engineering at Google》：</p>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#普通思路">普通思路</a></li>
+        <li><a href="#增加一个缓存">增加一个缓存</a></li>
+        <li><a href="#一些结论">一些结论</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>两个 <code>Twitter</code> 的典型操作：</p>
 <ul>
-<li>如何融入团队</li>
-<li>知识共享</li>
+<li>发布 <code>tweet</code>：用户可以快速推送新消息到所有关注者，平均 <code>4.6k request/sec</code>，峰值约 <code>12k request/sec</code>；</li>
+<li>主页时间线（Home timeline）浏览：平均 <code>300k request/sec</code> 查看关注对象的最新消息；</li>
 </ul>
-<blockquote>
-<p>EN: <a href="https://abseil.io/resources/swe-book/html/toc.html" target="_blank" rel="noopener noreffer ">https://abseil.io/resources/swe-book/html/toc.html</a></p>
-<p>CN: <a href="https://qiangmzsx.github.io/Software-Engineering-at-Google/#/" target="_blank" rel="noopener noreffer ">https://qiangmzsx.github.io/Software-Engineering-at-Google/#/</a></p>
-</blockquote>
-<p>一个好的事后总结应该包括以下内容：</p>
+<p>难点：每个用户会关注很多人，也会被很多人关注。</p>
+<h2 id="普通思路">普通思路</h2>
+<p>将新发的 <code>tweet</code> 插入到全局 <code>tweet</code> 集合中。当用户查看时间线，先查找所有该用户关注的所有关注对象，根据时间排序，合并所有关注对象的消息。<code>SQL</code> 如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">tweet</span><span class="p">.</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">users</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">tweets</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">JOIN</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">tweets</span><span class="p">.</span><span class="n">sender_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">users</span><span class="p">.</span><span class="n">id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">JOIN</span><span class="w"> </span><span class="n">follows</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">follows</span><span class="p">.</span><span class="n">followee_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">users</span><span class="p">.</span><span class="n">id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">follows</span><span class="p">.</span><span class="n">follower_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current_user_id</span><span class="w">
+</span></span></span></code></pre></div><h2 id="增加一个缓存">增加一个缓存</h2>
+<p>对每个用户维护一个时间线缓存，如下图所示，</p>
+<a class="lightgallery" href="/images/twitter-cache.png" title="/images/twitter-cache.png" data-thumbnail="/images/twitter-cache.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/images/twitter-cache.png"
+            data-srcset="/images/twitter-cache.png, /images/twitter-cache.png 1.5x, /images/twitter-cache.png 2x"
+            data-sizes="auto"
+            alt="/images/twitter-cache.png" />
+    </a>
+<p>用户新发 <code>tweet</code> 消息，查询关注者，将 <code>tweet</code> 插入到关注者的时间线缓存中。</p>
+<p>给每一个用户维护一个队列，因为已经预先给每个用户将结果取出，访问的时候性能将会得到一定的保障；</p>
+<h2 id="一些结论">一些结论</h2>
+<p>方法 <code>1</code> 进行全表的查询，读的压力会很大；</p>
+<p>通过方法 <code>2</code>，在发布的时候多做一些工作，来减少读的压力；</p>
+<p>说一下 <code>Twitter</code> 最后的做法，方法 <code>2</code> 被稳定实现，但是 <code>Twitter</code> 倾向于结合两种方法。</p>
+<ol>
+<li>
+<p>大多数普通用户（关注者不是超级数量级的）新发 <code>tweet</code> 消息采用第 <code>2</code> 种方法,</p>
+</li>
+<li>
+<p>针对超多关注者的用户，使用方法 <code>1</code>，其推文被单独提取，根据用户的关注列表，在读取时与用户的时间线进行合并。</p>
+</li>
+</ol>
+<p>还有手段可以完成，进行优化:</p>
 <ul>
-<li>事件的简要概述</li>
-<li>事件的时间线，从发现、调查到解决的过程</li>
-<li>事件的主要原因</li>
-<li>影响和损害评估</li>
-<li>一套立即解决该问题的行动项目（包括执行人）。</li>
-<li>一套防止事件再次发生的行动项目</li>
-<li>经验教训</li>
+<li>根据用户的关注对象数量采取不同的推送策略；</li>
+<li>针对关注对象特别多的用户的时间线，采用延时消息进行推送；</li>
+<li>优先保证超多关注者的用户推送准确性；</li>
+<li>&hellip;</li>
 </ul>
-<blockquote>
-<p>这个也可以是一次很好的技术分享的路径，把 “事件” 换成 “问题” 即可。</p>
-</blockquote>
-<p>工程本质上是关于<strong>权衡</strong>的。 除非你有一个不变的环境和完美的知识，否则你不可能一直对所有事情都是正确的，所以<strong>当有新的证据时，你当然应该改变你的最初想法。</strong> 谨慎选择你的战斗：要想让别人正确地听取你的意见，你首先需要倾听别人的意见。最好在下定决心或坚定地宣布决定之前进行倾听——如果你不断地改变主意，人们会认为你不坚定。</p>
-<p>几乎任何规模的软件工作的基础都是一个运作良好的团队。尽管软件开发者单打独斗的 &ldquo;天才神话 &ldquo;仍然存在，但事实是，没有人能够真正地单干。<strong>一个软件组织要想经受住时间的考验，就必须有一种健康的文化，植根于谦逊、信任和尊重，围绕着团队而不是个人。</strong> 此外，软件开发的创造性要求人们承担风险并偶尔失败；为了让人们接受这种失败，必须有一个健康的团队环境。</p>
-<p>不管你是新加入的团队还是高级领导者：<strong>你应该始终处在一个有东西可学的环境中。如果不是这样，你就会停滞不前（应该找一个新的环境）。</strong></p>
-<p>在接收端，在回答问题时的耐心和善意培养了一种环境，<strong>使人们感到安全地寻求帮助。</strong> 让人们更容易克服最初对提问的犹豫不决，尽早定下基调：<strong>主动征求问题，让即使是“琐碎”的问题也能轻松得到答案。</strong> 虽然工程师们可能会自己摸索出内部知识，但他们不是在真空中工作的。有针对性的帮助可以让工程师更快地提高工作效率，从而使整个团队的工作效率更高。</p>
-<p><strong>在移除或改变某些东西之前，首先要了解它为什么存在。</strong></p>
-<p>在你了解了代码的背景和目的之后，考虑你的改变是否仍然有意义。如果有意义，就继续做；如果没有意义，就为未来的继任者记录下你的理由。</p>
-<blockquote>
-<p>这个很难得，对从业者的素质是有很高的要求的，凡事总得有人起头，我依然坚信，从自己做起，是可以改变世界的。</p>
-</blockquote>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2022-08-05</span>
+                <span>Updated on 2022-08-19</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://spike014.github.io/posts/software-engineering-at-google-2/" data-title="谷歌软件工程之道-2" data-hashtags="book"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://spike014.github.io/posts/software-engineering-at-google-2/" data-hashtag="book"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://spike014.github.io/posts/software-engineering-at-google-2/" data-title="谷歌软件工程之道-2"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://spike014.github.io/posts/software-engineering-at-google-2/" data-title="谷歌软件工程之道-2"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://spike014.github.io/posts/software-engineering-at-google-2/" data-title="谷歌软件工程之道-2"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://spike014.github.io/posts/example_from_twitter/" data-title="一个 Twitter 的负载例子" data-hashtags="性能优化"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://spike014.github.io/posts/example_from_twitter/" data-hashtag="性能优化"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://spike014.github.io/posts/example_from_twitter/" data-title="一个 Twitter 的负载例子"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://spike014.github.io/posts/example_from_twitter/" data-title="一个 Twitter 的负载例子"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://spike014.github.io/posts/example_from_twitter/" data-title="一个 Twitter 的负载例子"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/book/">book</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/aboutsoftware-engineering-at-google/" class="prev" rel="prev" title="谷歌软件工程之道-1"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>谷歌软件工程之道-1</a>
-            <a href="/posts/example_from_twitter/" class="next" rel="next" title="一个 Twitter 的负载例子">一个 Twitter 的负载例子<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/posts/software-engineering-at-google-2/" class="prev" rel="prev" title="谷歌软件工程之道-2"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>谷歌软件工程之道-2</a></div>
 </div>
 </article></div>
             </main><footer class="footer">
