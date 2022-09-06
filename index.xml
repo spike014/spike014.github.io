@@ -3,9 +3,17 @@
         <title>spike014 site</title>
         <link>http://spike014.github.io/</link>
         <description>spike014 site</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>spike014</copyright><lastBuildDate>Fri, 02 Sep 2022 10:06:38 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>spike014</copyright><lastBuildDate>Tue, 06 Sep 2022 16:55:05 &#43;0800</lastBuildDate>
             <atom:link href="http://spike014.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>sql.DB 以何种方式进行初始化，保存，使用?</title>
+    <link>http://spike014.github.io/posts/how-to-initialize-sql.db-in-go/</link>
+    <pubDate>Tue, 06 Sep 2022 16:55:05 &#43;0800</pubDate>
+    <author>spike014</author>
+    <guid>http://spike014.github.io/posts/how-to-initialize-sql.db-in-go/</guid>
+    <description><![CDATA[起因: 《100 Go Mistakes and How to Avoid Them 》 “2.3 Misusing init functions”： In the init function, we will open a database using sql.Open. We will make this database a global variable that functions can later use. var db *sql.DB func init() { dataSourceName := os.Getenv(&#34;MYSQL_DATA_SOURCE_NAME&#34;) d, err := sql.Open(&#34;mysql&#34;, dataSourceName)]]></description>
+</item>
+<item>
     <title>一个 Twitter 的负载例子</title>
     <link>http://spike014.github.io/posts/example_from_twitter/</link>
     <pubDate>Fri, 02 Sep 2022 10:06:38 &#43;0800</pubDate>

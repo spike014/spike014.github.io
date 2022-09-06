@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>sql.DB 以何种方式进行初始化，保存，使用? - spike014 site</title><meta name="Description" content="spike014 site"><meta property="og:title" content="sql.DB 以何种方式进行初始化，保存，使用?" />
+<meta property="og:description" content="起因: 《100 Go Mistakes and How to Avoid Them 》 “2.3 Misusing init functions”： In the init function, we will open a database using sql.Open. We will make this database a global variable that functions can later use. var db *sql.DB func init() { dataSourceName := os.Getenv(&#34;MYSQL_DATA_SOURCE_NAME&#34;) d, err := sql.Open(&#34;mysql&#34;, dataSourceName)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://spike014.github.io/posts/how-to-initialize-sql.db-in-go/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-06T16:55:05+08:00" />
+<meta property="article:modified_time" content="2022-09-06T16:55:05+08:00" /><meta property="og:site_name" content="spike014 site" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="sql.DB 以何种方式进行初始化，保存，使用?"/>
+<meta name="twitter:description" content="起因: 《100 Go Mistakes and How to Avoid Them 》 “2.3 Misusing init functions”： In the init function, we will open a database using sql.Open. We will make this database a global variable that functions can later use. var db *sql.DB func init() { dataSourceName := os.Getenv(&#34;MYSQL_DATA_SOURCE_NAME&#34;) d, err := sql.Open(&#34;mysql&#34;, dataSourceName)"/>
+<meta name="application-name" content="spike014 site">
+<meta name="apple-mobile-web-app-title" content="spike014 site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://spike014.github.io/posts/how-to-initialize-sql.db-in-go/" /><link rel="prev" href="http://spike014.github.io/posts/example_from_twitter/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "sql.DB 以何种方式进行初始化，保存，使用?",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/spike014.github.io\/posts\/how-to-initialize-sql.db-in-go\/"
+        },"genre": "posts","wordcount":  1669 ,
+        "url": "http:\/\/spike014.github.io\/posts\/how-to-initialize-sql.db-in-go\/","datePublished": "2022-09-06T16:55:05+08:00","dateModified": "2022-09-06T16:55:05+08:00","license": "spike014","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "spike014"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="spike014 site"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="spike014 site"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">sql.DB 以何种方式进行初始化，保存，使用?</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/spike014" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>spike014</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-09-06">2022-09-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1669 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#起因">起因:</a></li>
+        <li><a href="#问题">问题</a></li>
+        <li><a href="#解决方案">解决方案</a>
+          <ul>
+            <li><a href="#原有方案">原有方案</a></li>
+            <li><a href="#新方案">新方案</a></li>
+          </ul>
+        </li>
+        <li><a href="#后结">后结</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="起因">起因:</h2>
+<p>《100 Go Mistakes and How to Avoid Them 》 “2.3 Misusing init functions”：</p>
+<blockquote>
+<p>In the init function, we will open a database using sql.Open. We will make this database a global variable that functions can later use.</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">db</span> <span class="o">*</span><span class="nx">sql</span><span class="p">.</span><span class="nx">DB</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">dataSourceName</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Getenv</span><span class="p">(</span><span class="s">&#34;MYSQL_DATA_SOURCE_NAME&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">d</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">sql</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="s">&#34;mysql&#34;</span><span class="p">,</span> <span class="nx">dataSourceName</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">log</span><span class="p">.</span><span class="nf">Panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">err</span> <span class="p">=</span> <span class="nx">d</span><span class="p">.</span><span class="nf">Ping</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">log</span><span class="p">.</span><span class="nf">Panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">db</span> <span class="p">=</span> <span class="nx">d</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>书作者认为，有三个主要缺点如下：</p>
+<ol>
+<li>错误管理将会被限制，<code>init()</code> 没有返回值，初始化失败的话，这时候只能 <code>panic</code>，不应该由 <code>db</code> 所在 <code>package</code>，在 <code>init</code> 初始化 <code>db</code>，<code>package</code> 的调用者也许会希望进行重试，或者做一些类似灾备方案（发通知给 <code>sentry</code> 等），总之要允许客户端实现他们的错误处理逻辑；</li>
+<li>其次是测试，在测试的时候，<code>init()</code> 会先于测试代码执行；</li>
+<li>以上代码需要赋值给一个全局变量，全局变量则有一下缺点：
+<ol>
+<li>在这个 <code>package</code> 内，所有函数都可以改变它；</li>
+<li>会让测试变得复杂，其他函数会依赖它；</li>
+</ol>
+</li>
+</ol>
+<p>最后，书作者给出的答案是，实现 <code>func createClient(dataSourceName string) (*sql.DB, error)</code></p>
+<p>但是疑问还是没有解开，</p>
+<h2 id="问题">问题</h2>
+<p>因为 <code>sql.DB</code> 有连接池的实现，不需要每次查询都显式获取一个连接。</p>
+<p>因此，<strong><code>sql.DB</code>，以何种方式进行初始化，保存，使用才不会导致上面的问题？</strong></p>
+<p>其实，看似是三个问题，其实知道以上书中列举的缺点之后，可以简化为一个问题：</p>
+<p><code>sql.DB</code> 如何初始化？</p>
+<p>解决了初始化的问题，也就可以解决后面保存，和使用。</p>
+<h2 id="解决方案">解决方案</h2>
+<h3 id="原有方案">原有方案</h3>
+<p>全局变量，一般是结合 <code>init()</code> 进行，看到一些开源的 <code>admin</code> 项目是这样做的，但是这种做法确实如书作者所说，测试代码会很难写，这些项目也确实很少有测试代码，但是测试其实依然可以写(见下文测试部分)。</p>
+<p>至于其他函数可以改变它这个危险行为，恐怕只能用严格的代码审查去尽可能消除这部分危险 ⚠️ 因素了。</p>
+<h3 id="新方案">新方案</h3>
+<p><code>sql.DB</code> 其实符合单例模式的使用场景，即</p>
+<blockquote>
+<p>保证一个类、只有一个实例存在，同时提供能对该实例加以访问的全局访问方法。里举一个项目结构完整的例子(代码可见：<a href="https://github.com/spike014/init_sql.DB_example" target="_blank" rel="noopener noreffer ">init_sql.DB_example</a>)</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">internal</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;sync&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;gorm.io/driver/mysql&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;gorm.io/gorm&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;how-to-init-sql.DB/config&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">once</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">Once</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">sqlDB</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">dbConn</span> <span class="o">*</span><span class="nx">gorm</span><span class="p">.</span><span class="nx">DB</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">db</span> <span class="o">*</span><span class="nx">sqlDB</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">DB</span><span class="p">()</span> <span class="o">*</span><span class="nx">gorm</span><span class="p">.</span><span class="nx">DB</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">once</span><span class="p">.</span><span class="nf">Do</span><span class="p">(</span><span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">db</span> <span class="p">=</span> <span class="nf">initDBConn</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">DataSourceName</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">db</span><span class="p">.</span><span class="nx">dbConn</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">initDBConn</span><span class="p">(</span><span class="nx">dataSourceName</span> <span class="kt">string</span><span class="p">)</span> <span class="o">*</span><span class="nx">sqlDB</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">db</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">createClient</span><span class="p">(</span><span class="nx">dataSourceName</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// handle error
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// panic? retry? send message to sentry? Whatever...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="o">&amp;</span><span class="nx">sqlDB</span><span class="p">{</span><span class="nx">dbConn</span><span class="p">:</span> <span class="nx">db</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">createClient</span><span class="p">(</span><span class="nx">dataSourceName</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">gorm</span><span class="p">.</span><span class="nx">DB</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">dbConn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">gorm</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="nx">mysql</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="nx">dataSourceName</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">dbConn</span><span class="p">,</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>使用如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">userDao</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">db</span> <span class="o">*</span><span class="nx">gorm</span><span class="p">.</span><span class="nx">DB</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">User</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">userDao</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">internal</span><span class="p">.</span><span class="nf">DB</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">u</span> <span class="o">*</span><span class="nx">userDao</span><span class="p">)</span> <span class="nf">Create</span><span class="p">(</span><span class="nx">user</span> <span class="o">*</span><span class="nx">model</span><span class="p">.</span><span class="nx">User</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">u</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nf">Create</span><span class="p">(</span><span class="nx">user</span><span class="p">).</span><span class="nx">Error</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>现在代码结构如下：</p>
+<pre tabindex="0"><code>├── config
+│   └── config.go
+├── dao
+│   ├── internal
+│   │   └── db.go
+│   ├── model
+│   │   └── user.go
+│   └── user.go
+</code></pre><p>此时 <code>sql.DB</code> 对外只提供了一个访问方法 <code>DB()</code>，对修改关闭，解决问题 <code>3.1</code>;</p>
+<p>错误管理可以在 <code>initDBConn()</code> 中进行，解决问题 <code>1</code>;</p>
+<p>只剩下问题 <code>2</code> 和 <code>3.2</code>，都是跟测试相关的，</p>
+<p>问题 <code>2</code> 中测试与 <code>init()</code> 函数使用有关，这里已经不使用 <code>init()</code> 进行初始化了，因此只剩下对全局变量的依赖这一个可能会阻碍到测试的难点。</p>
+<p>涉及到 <code>sql</code> 的执行的，我们使用 <a href="github.com/DATA-DOG/go-sqlmock" rel="">github.com/DATA-DOG/go-sqlmock</a>。</p>
+<p>在初始化 <code>sql.DB</code> 的 <code>internal</code> 包中 <code>mock</code> 相关的单例实例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">dbmock</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">SqlDB</span>   <span class="o">*</span><span class="nx">sql</span><span class="p">.</span><span class="nx">DB</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">GormDB</span>  <span class="o">*</span><span class="nx">gorm</span><span class="p">.</span><span class="nx">DB</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">SqlMock</span> <span class="nx">sqlmock</span><span class="p">.</span><span class="nx">Sqlmock</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Mock4Test return dbmock for sql tests.
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Do not use it in production.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">Mock4Test</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="o">*</span><span class="nx">dbmock</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">t</span><span class="p">.</span><span class="nf">Helper</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">dbMock</span><span class="p">,</span> <span class="nx">mock</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">sqlmock</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">assert</span><span class="p">.</span><span class="nf">Nil</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">gormDB</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">gorm</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="nx">mysql</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">mysql</span><span class="p">.</span><span class="nx">Config</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Conn</span><span class="p">:</span>                      <span class="nx">dbMock</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">SkipInitializeWithVersion</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}))</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">assert</span><span class="p">.</span><span class="nf">Nil</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="o">&amp;</span><span class="nx">dbmock</span><span class="p">{</span><span class="nx">dbMock</span><span class="p">,</span> <span class="nx">gormDB</span><span class="p">,</span> <span class="nx">mock</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>真正的测试代码，则放在 <code>dao</code> 的 <code>user_test.go</code> 中即可：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">TestInsertuser</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">t</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="s">&#34;pos&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">user</span> <span class="o">:=</span> <span class="nx">model</span><span class="p">.</span><span class="nx">User</span><span class="p">{</span><span class="nx">Username</span><span class="p">:</span> <span class="s">&#34;testuser_Name&#34;</span><span class="p">,</span> <span class="nx">Password</span><span class="p">:</span> <span class="s">&#34;test&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">mock</span> <span class="o">:=</span> <span class="nx">internal</span><span class="p">.</span><span class="nf">Mock4Test</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nx">mock</span><span class="p">.</span><span class="nx">SqlMock</span><span class="p">.</span><span class="nf">ExpectBegin</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">mock</span><span class="p">.</span><span class="nx">SqlMock</span><span class="p">.</span><span class="nf">ExpectExec</span><span class="p">(</span><span class="nx">regexp</span><span class="p">.</span><span class="nf">QuoteMeta</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">			<span class="s">&#34;INSERT INTO `users` (`username`,`password`,`email`) VALUES (?,?,?)&#34;</span><span class="p">)).</span>
+</span></span><span class="line"><span class="cl">			<span class="nf">WithArgs</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">Username</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">Password</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">Email</span><span class="p">).</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">WillReturnResult</span><span class="p">(</span><span class="nx">sqlmock</span><span class="p">.</span><span class="nf">NewResult</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">mock</span><span class="p">.</span><span class="nx">SqlMock</span><span class="p">.</span><span class="nf">ExpectCommit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="k">defer</span> <span class="nx">mock</span><span class="p">.</span><span class="nx">SqlDB</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nx">userDao</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">userDao</span><span class="p">{</span><span class="nx">mock</span><span class="p">.</span><span class="nx">GormDB</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">err</span> <span class="o">:=</span> <span class="nx">userDao</span><span class="p">.</span><span class="nf">Create</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">user</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">assert</span><span class="p">.</span><span class="nf">Nil</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">err</span> <span class="p">=</span> <span class="nx">mock</span><span class="p">.</span><span class="nx">SqlMock</span><span class="p">.</span><span class="nf">ExpectationsWereMet</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">assert</span><span class="p">.</span><span class="nf">Nil</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>现在代码结构如下：</p>
+<pre tabindex="0"><code>├── config
+│   └── config.go (mock external config)
+├── dao
+│   ├── internal
+│   │   ├── db.go
+│   │   └── db_sqlmock.go
+│   ├── model
+│   │   └── user.go (include sql DDL)
+│   ├── user.go
+│   └── user_test.go
+</code></pre><p>运行测试：</p>
+<pre tabindex="0"><code>=== RUN   TestInsertuser
+=== RUN   TestInsertuser/pos
+--- PASS: TestInsertuser (0.00s)
+    --- PASS: TestInsertuser/pos (0.00s)
+PASS
+coverage: 100.0% of statements
+ok  	how-to-init-sql.DB/dao	0.152s	coverage: 100.0% of statements
+</code></pre><p>至此，我们解决了问题 <code>3.2</code>，也就回答了给自己提出的 <code>sql.DB</code> 如何初始化，保存在哪里，如何使用这三个问题。</p>
+<p><strong>重复一下，以上代码可见：<a href="https://github.com/spike014/init_sql.DB_example" target="_blank" rel="noopener noreffer ">init_sql.DB_example</a></strong></p>
+<h2 id="后结">后结</h2>
+<p>写这篇的时候，看了不少开源的，商业的项目，都不够满意，总觉得不够优雅，思来想去，想起之前学 <code>Java</code> 学的设计模式，虽然 <code>Java</code> 现在基本没用过（基本忘光了），但是设计模式倒是刻在脑子里，早上灵机一动想起来了这里可以用 <code>单例模式</code>。</p>
+<p>又一次觉得看这些修炼内功的书(《大话设计模式》等)意义真的非常重大。外面的世界怎么变，这些原理性的，模式化的东西，是通用的。</p>
+<p>其次，其实使用设计模式的人写出来的代码和不使用设计模式写出来的代码，不仅是测试难写与否，同时后期可维护性，也可以说是扩展性受影响会很大。</p>
+<p>后面我会写一篇完整的服务端，我将挑战单元测试率 → 100%，争取覆盖尽可能多的使用场景 👉 <a href="./Golang-unit-test.md" rel="">Golang unit test</a>。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-09-06</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://spike014.github.io/posts/how-to-initialize-sql.db-in-go/" data-title="sql.DB 以何种方式进行初始化，保存，使用?"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://spike014.github.io/posts/how-to-initialize-sql.db-in-go/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://spike014.github.io/posts/how-to-initialize-sql.db-in-go/" data-title="sql.DB 以何种方式进行初始化，保存，使用?"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://spike014.github.io/posts/how-to-initialize-sql.db-in-go/" data-title="sql.DB 以何种方式进行初始化，保存，使用?"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://spike014.github.io/posts/how-to-initialize-sql.db-in-go/" data-title="sql.DB 以何种方式进行初始化，保存，使用?"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/example_from_twitter/" class="prev" rel="prev" title="一个 Twitter 的负载例子"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>一个 Twitter 的负载例子</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/spike014" target="_blank">spike014</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"data":{"id-1":"spike014 site","id-2":"spike014 site"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":150}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
