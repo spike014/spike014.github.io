@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/spike014.github.io\/posts\/how-to-initialize-sql.db-in-go\/"
-        },"genre": "posts","wordcount":  1669 ,
+        },"genre": "posts","wordcount":  1719 ,
         "url": "http:\/\/spike014.github.io\/posts\/how-to-initialize-sql.db-in-go\/","datePublished": "2022-09-06T16:55:05+08:00","dateModified": "2022-09-06T16:55:05+08:00","license": "spike014","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -102,7 +102,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">sql.DB 以何种方式进行初始化，保存，使用?</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/spike014" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>spike014</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-09-06">2022-09-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1669 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-09-06">2022-09-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1719 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -145,9 +145,9 @@
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">        <span class="nx">db</span> <span class="p">=</span> <span class="nx">d</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>书作者认为，有三个主要缺点如下：</p>
+</span></span></code></pre></div><p>书作者认为，有三个主要问题如下：</p>
 <ol>
-<li>错误管理将会被限制，<code>init()</code> 没有返回值，初始化失败的话，这时候只能 <code>panic</code>，不应该由 <code>db</code> 所在 <code>package</code>，在 <code>init</code> 初始化 <code>db</code>，<code>package</code> 的调用者也许会希望进行重试，或者做一些类似灾备方案（发通知给 <code>sentry</code> 等），总之要允许客户端实现他们的错误处理逻辑；</li>
+<li>错误处理将会被限制，<code>init()</code> 没有返回值，初始化失败的话，这时候只能 <code>panic</code>，不应该由 <code>db</code> 所在 <code>package</code>，在 <code>init</code> 初始化 <code>db</code>，<code>package</code> 的调用者也许会希望进行重试，或者做一些类似灾备方案（发通知给 <code>sentry</code> 等），总之要允许客户端实现他们的错误处理逻辑；</li>
 <li>其次是测试，在测试的时候，<code>init()</code> 会先于测试代码执行；</li>
 <li>以上代码需要赋值给一个全局变量，全局变量则有一下缺点：
 <ol>
@@ -239,11 +239,11 @@
 │   ├── model
 │   │   └── user.go
 │   └── user.go
-</code></pre><p>此时 <code>sql.DB</code> 对外只提供了一个访问方法 <code>DB()</code>，对修改关闭，解决问题 <code>3.1</code>;</p>
-<p>错误管理可以在 <code>initDBConn()</code> 中进行，解决问题 <code>1</code>;</p>
-<p>只剩下问题 <code>2</code> 和 <code>3.2</code>，都是跟测试相关的，</p>
+</code></pre><p>此时 <code>sql.DB</code> 对外只提供了一个访问方法 <code>DB()</code>，对修改关闭，解决问题 <code>3.1</code> (全局变量会被修改);</p>
+<p>错误处理可以在 <code>initDBConn()</code> 中进行，解决问题 <code>1</code>(无法进行错误处理);</p>
+<p>只剩下问题 <code>2</code> (测试会执行 <code>init()</code>)和 <code>3.2</code> (测试难写，会依赖于这个全局变量)，都是跟测试相关的，</p>
 <p>问题 <code>2</code> 中测试与 <code>init()</code> 函数使用有关，这里已经不使用 <code>init()</code> 进行初始化了，因此只剩下对全局变量的依赖这一个可能会阻碍到测试的难点。</p>
-<p>涉及到 <code>sql</code> 的执行的，我们使用 <a href="github.com/DATA-DOG/go-sqlmock" rel="">github.com/DATA-DOG/go-sqlmock</a>。</p>
+<p>涉及到 <code>sql</code> 的执行的，我们使用 <a href="https://github.com/DATA-DOG/go-sqlmock" target="_blank" rel="noopener noreffer ">github.com/DATA-DOG/go-sqlmock</a>。</p>
 <p>在初始化 <code>sql.DB</code> 的 <code>internal</code> 包中 <code>mock</code> 相关的单例实例：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">dbmock</span> <span class="kd">struct</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="nx">SqlDB</span>   <span class="o">*</span><span class="nx">sql</span><span class="p">.</span><span class="nx">DB</span>
@@ -311,7 +311,7 @@ ok  	how-to-init-sql.DB/dao	0.152s	coverage: 100.0% of statements
 <p>写这篇的时候，看了不少开源的，商业的项目，都不够满意，总觉得不够优雅，思来想去，想起之前学 <code>Java</code> 学的设计模式，虽然 <code>Java</code> 现在基本没用过（基本忘光了），但是设计模式倒是刻在脑子里，早上灵机一动想起来了这里可以用 <code>单例模式</code>。</p>
 <p>又一次觉得看这些修炼内功的书(《大话设计模式》等)意义真的非常重大。外面的世界怎么变，这些原理性的，模式化的东西，是通用的。</p>
 <p>其次，其实使用设计模式的人写出来的代码和不使用设计模式写出来的代码，不仅是测试难写与否，同时后期可维护性，也可以说是扩展性受影响会很大。</p>
-<p>后面我会写一篇完整的服务端，我将挑战单元测试率 → 100%，争取覆盖尽可能多的使用场景 👉 <a href="./Golang-unit-test.md" rel="">Golang unit test</a>。</p>
+<p>后面我会写一篇完整的服务端，我将挑战单元测试率 → 100%，争取覆盖尽可能多的使用场景 👉 <a href="../golang-unit-test" rel="">Golang unit test</a>。</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
