@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/spike014.github.io\/posts\/how-to-initialize-sql.db-in-go\/"
-        },"genre": "posts","wordcount":  1719 ,
+        },"genre": "posts","wordcount":  1751 ,
         "url": "http:\/\/spike014.github.io\/posts\/how-to-initialize-sql.db-in-go\/","datePublished": "2022-09-06T16:55:05+08:00","dateModified": "2022-09-06T16:55:05+08:00","license": "spike014","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -102,7 +102,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">sql.DB 以何种方式进行初始化，保存，使用?</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/spike014" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>spike014</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-09-06">2022-09-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1719 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-09-06">2022-09-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1751 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -217,15 +217,23 @@
 </span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">dbConn</span><span class="p">,</span> <span class="kc">nil</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>使用如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">userDao</span> <span class="kd">struct</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">userCRUD</span> <span class="kd">interface</span> <span class="p">{</span> <span class="c1">// 可进行 mock，用于调用者的测试中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nf">Create</span><span class="p">(</span><span class="nx">user</span> <span class="o">*</span><span class="nx">model</span><span class="p">.</span><span class="nx">User</span><span class="p">)</span> <span class="kt">error</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">userDao</span> <span class="kd">struct</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="nx">db</span> <span class="o">*</span><span class="nx">gorm</span><span class="p">.</span><span class="nx">DB</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="p">(</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">User</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">userDao</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">user</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">userDao</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl">		<span class="nx">internal</span><span class="p">.</span><span class="nf">DB</span><span class="p">(),</span>
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">User</span><span class="p">()</span> <span class="nx">userCRUD</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">user</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">u</span> <span class="o">*</span><span class="nx">userDao</span><span class="p">)</span> <span class="nf">Create</span><span class="p">(</span><span class="nx">user</span> <span class="o">*</span><span class="nx">model</span><span class="p">.</span><span class="nx">User</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">u</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nf">Create</span><span class="p">(</span><span class="nx">user</span><span class="p">).</span><span class="nx">Error</span>
@@ -268,19 +276,18 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">TestInsertuser</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="nx">t</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="s">&#34;pos&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">user</span> <span class="o">:=</span> <span class="nx">model</span><span class="p">.</span><span class="nx">User</span><span class="p">{</span><span class="nx">Username</span><span class="p">:</span> <span class="s">&#34;testuser_Name&#34;</span><span class="p">,</span> <span class="nx">Password</span><span class="p">:</span> <span class="s">&#34;test&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">userTest</span> <span class="o">:=</span> <span class="nx">model</span><span class="p">.</span><span class="nx">User</span><span class="p">{</span><span class="nx">Username</span><span class="p">:</span> <span class="s">&#34;testuser_Name&#34;</span><span class="p">,</span> <span class="nx">Password</span><span class="p">:</span> <span class="s">&#34;test&#34;</span><span class="p">}</span>
 </span></span><span class="line"><span class="cl">		<span class="nx">mock</span> <span class="o">:=</span> <span class="nx">internal</span><span class="p">.</span><span class="nf">Mock4Test</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">		<span class="nx">mock</span><span class="p">.</span><span class="nx">SqlMock</span><span class="p">.</span><span class="nf">ExpectBegin</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">		<span class="nx">mock</span><span class="p">.</span><span class="nx">SqlMock</span><span class="p">.</span><span class="nf">ExpectExec</span><span class="p">(</span><span class="nx">regexp</span><span class="p">.</span><span class="nf">QuoteMeta</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">			<span class="s">&#34;INSERT INTO `users` (`username`,`password`,`email`) VALUES (?,?,?)&#34;</span><span class="p">)).</span>
-</span></span><span class="line"><span class="cl">			<span class="nf">WithArgs</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">Username</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">Password</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">Email</span><span class="p">).</span>
-</span></span><span class="line"><span class="cl">            <span class="nf">WillReturnResult</span><span class="p">(</span><span class="nx">sqlmock</span><span class="p">.</span><span class="nf">NewResult</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">			<span class="nf">WithArgs</span><span class="p">(</span><span class="nx">userTest</span><span class="p">.</span><span class="nx">Username</span><span class="p">,</span> <span class="nx">userTest</span><span class="p">.</span><span class="nx">Password</span><span class="p">,</span> <span class="nx">userTest</span><span class="p">.</span><span class="nx">Email</span><span class="p">).</span><span class="nf">WillReturnResult</span><span class="p">(</span><span class="nx">sqlmock</span><span class="p">.</span><span class="nf">NewResult</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">		<span class="nx">mock</span><span class="p">.</span><span class="nx">SqlMock</span><span class="p">.</span><span class="nf">ExpectCommit</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">		<span class="k">defer</span> <span class="nx">mock</span><span class="p">.</span><span class="nx">SqlDB</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">		<span class="nx">userDao</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">userDao</span><span class="p">{</span><span class="nx">mock</span><span class="p">.</span><span class="nx">GormDB</span><span class="p">}</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">err</span> <span class="o">:=</span> <span class="nx">userDao</span><span class="p">.</span><span class="nf">Create</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">user</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">user</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">userDao</span><span class="p">{</span><span class="nx">mock</span><span class="p">.</span><span class="nx">GormDB</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">err</span> <span class="o">:=</span> <span class="nf">User</span><span class="p">().</span><span class="nf">Create</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">userTest</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">		<span class="nx">assert</span><span class="p">.</span><span class="nf">Nil</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">		<span class="nx">err</span> <span class="p">=</span> <span class="nx">mock</span><span class="p">.</span><span class="nx">SqlMock</span><span class="p">.</span><span class="nf">ExpectationsWereMet</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">		<span class="nx">assert</span><span class="p">.</span><span class="nf">Nil</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
