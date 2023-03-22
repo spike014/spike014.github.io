@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "style.min.css",
-	"sourceRoot": "/Users/l1ng14/personal/spike014.io",
+	"sourceRoot": "/Users/l1ng14/literature/spike014.io",
 	"sources": [
 		"themes/LoveIt/assets/css/style.scss",
 		"themes/LoveIt/assets/lib/normalize/normalize.css",
