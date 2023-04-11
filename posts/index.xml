@@ -3,7 +3,15 @@
         <title>All Posts - spike014 site</title>
         <link>http://spike014.github.io/posts/</link>
         <description>All Posts | spike014 site</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>spike014</copyright><lastBuildDate>Tue, 28 Mar 2023 23:22:19 &#43;0800</lastBuildDate><atom:link href="http://spike014.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>spike014</copyright><lastBuildDate>Mon, 10 Apr 2023 03:02:13 &#43;0000</lastBuildDate><atom:link href="http://spike014.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Why Kafka</title>
+    <link>http://spike014.github.io/posts/tech/why-kafka/</link>
+    <pubDate>Mon, 10 Apr 2023 03:02:13 &#43;0000</pubDate>
+    <author>spike014</author>
+    <guid>http://spike014.github.io/posts/tech/why-kafka/</guid>
+    <description><![CDATA[背景 半年多前，初出茅庐的我接触到消息代理。我是这么做的： 首先，搜一下有哪些著名的开源消息代理组件： Kafka RabbitMQ Redis 的 Pub/Sub 也可以实现消息广播传递。 再看下他]]></description>
+</item>
+<item>
     <title>低成本运维你的 Linux(肉鸡)。Low Cost Maintenance of Your Linux</title>
     <link>http://spike014.github.io/posts/tech/low-cost-maintenance-your-linux/</link>
     <pubDate>Tue, 28 Mar 2023 23:22:19 &#43;0800</pubDate>
