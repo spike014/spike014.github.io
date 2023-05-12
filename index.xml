@@ -3,9 +3,17 @@
         <title>spike014 site</title>
         <link>http://spike014.github.io/</link>
         <description>spike014 site</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>spike014</copyright><lastBuildDate>Mon, 10 Apr 2023 03:02:13 &#43;0000</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>spike014</copyright><lastBuildDate>Sat, 06 May 2023 23:05:54 &#43;0800</lastBuildDate>
             <atom:link href="http://spike014.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>我是怎么阅读一本书的？</title>
+    <link>http://spike014.github.io/posts/think/how-do-i-read-a-book/</link>
+    <pubDate>Sat, 06 May 2023 23:05:54 &#43;0800</pubDate>
+    <author>spike014</author>
+    <guid>http://spike014.github.io/posts/think/how-do-i-read-a-book/</guid>
+    <description><![CDATA[我是怎么阅读一本书的？ 首先，由于职业的关系，我阅读的书籍分为计算机相关的专业技术书籍和非技术书籍。 在我看来，阅读非技术书籍是一件相当于他人的]]></description>
+</item>
+<item>
     <title>Why Kafka</title>
     <link>http://spike014.github.io/posts/tech/why-kafka/</link>
     <pubDate>Mon, 10 Apr 2023 03:02:13 &#43;0000</pubDate>
