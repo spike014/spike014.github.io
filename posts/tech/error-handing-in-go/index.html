@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Error Handing in Go - spike014 site</title><meta name="Description" content="spike014 site"><meta property="og:title" content="Error Handing in Go" />
+<meta property="og:description" content="现状 错误处理，是编程中绕不过的话题。 一个思考，最先出现的错误都应该尽快进行错误处理。 if err != nil { ... } 相信写过 Go 的，对上面这个都不陌生。 如果说 if-else" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://spike014.github.io/posts/tech/error-handing-in-go/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-20T02:29:51+00:00" />
+<meta property="article:modified_time" content="2023-05-20T02:29:51+00:00" /><meta property="og:site_name" content="spike014 site" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Error Handing in Go"/>
+<meta name="twitter:description" content="现状 错误处理，是编程中绕不过的话题。 一个思考，最先出现的错误都应该尽快进行错误处理。 if err != nil { ... } 相信写过 Go 的，对上面这个都不陌生。 如果说 if-else"/>
+<meta name="application-name" content="spike014 site">
+<meta name="apple-mobile-web-app-title" content="spike014 site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://spike014.github.io/posts/tech/error-handing-in-go/" /><link rel="prev" href="http://spike014.github.io/posts/think/how-do-i-read-a-book/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Error Handing in Go",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/spike014.github.io\/posts\/tech\/error-handing-in-go\/"
+        },"genre": "posts","wordcount":  2128 ,
+        "url": "http:\/\/spike014.github.io\/posts\/tech\/error-handing-in-go\/","datePublished": "2023-05-20T02:29:51+00:00","dateModified": "2023-05-20T02:29:51+00:00","license": "spike014","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "spike014"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="spike014 site"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="spike014 site"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Error Handing in Go</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/spike014" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>spike014</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-05-20">2023-05-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2128 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#现状">现状</a>
+      <ul>
+        <li><a href="#现有解决方案">现有解决方案</a>
+          <ul>
+            <li><a href="#如何优雅处理">如何优雅处理</a></li>
+            <li><a href="#保留上下文信息">保留上下文信息</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#未来">未来</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="现状">现状</h1>
+<p>错误处理，是编程中绕不过的话题。</p>
+<blockquote>
+<p>一个思考，最先出现的错误都应该尽快进行错误处理。</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>相信写过 <code>Go</code> 的，对上面这个都不陌生。</p>
+<p>如果说 <code>if-else</code> 会出现 <code>if-else hell</code>，那么在 <code>Go</code> 里面还会再出现一个 <code>Error check hell</code>,</p>
+<a class="lightgallery" href="/images/tech/FvQfIHgaYAA7tAe.jpg" title="/images/tech/FvQfIHgaYAA7tAe.jpg" data-thumbnail="/images/tech/FvQfIHgaYAA7tAe.jpg">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/images/tech/FvQfIHgaYAA7tAe.jpg"
+            data-srcset="/images/tech/FvQfIHgaYAA7tAe.jpg, /images/tech/FvQfIHgaYAA7tAe.jpg 1.5x, /images/tech/FvQfIHgaYAA7tAe.jpg 2x"
+            data-sizes="auto"
+            alt="/images/tech/FvQfIHgaYAA7tAe.jpg" width="450" height="450" />
+    </a>
+<p>即便在一些有不少 <code>star</code> 的开源项目中，你依然可以看到这种代码。</p>
+<blockquote>
+<p>图中项目直接 Fatalf 的操作，值得思考，可以适当增加一些自我补救的措施（如：提供默认值，符合大多数用户的简单设置策略等）</p>
+</blockquote>
+<p>如果在保证错误得到正确处理的情况下，</p>
+<ol>
+<li>
+<p>进行优雅的错误处理，</p>
+</li>
+<li>
+<p>对错误能保留上下文(堆栈)信息，</p>
+</li>
+</ol>
+<p>这是我想要探讨的问题。</p>
+<p>现今 <code>Go</code> 的宗旨仍然是 <code>Errors are values</code>, 我个人是比较认同的，因为很多时候出错往往在你觉得不会出错的地方。你可以忽略错误，但是无论如何你都将得到一个约定俗成的 <code>error</code>。总之就是<strong>显式错误结果和显式错误检查，两种结合起来的错误处理方式。</strong></p>
+<h2 id="现有解决方案">现有解决方案</h2>
+<h3 id="如何优雅处理">如何优雅处理</h3>
+<blockquote>
+<p>Golang Error Handling lesson by Rob Pike</p>
+</blockquote>
+<p>OK. 请听题，现有代码如下所示，怎么消除 <code>Error check hell</code>？</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">fd</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="nx">p0</span><span class="p">[</span><span class="nx">a</span><span class="p">:</span><span class="nx">b</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">fd</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="nx">p1</span><span class="p">[</span><span class="nx">c</span><span class="p">:</span><span class="nx">d</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">fd</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="nx">p2</span><span class="p">[</span><span class="nx">e</span><span class="p">:</span><span class="nx">f</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>
+</span></span></code></pre></div><p>Rob Pike 先生给出的示例是：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">err</span> <span class="kt">error</span>
+</span></span><span class="line"><span class="cl"><span class="nx">write</span> <span class="o">:=</span> <span class="kd">func</span><span class="p">(</span><span class="nx">buf</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">w</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="nx">buf</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nf">write</span><span class="p">(</span><span class="nx">p0</span><span class="p">[</span><span class="nx">a</span><span class="p">:</span><span class="nx">b</span><span class="p">])</span> <span class="c1">// ---------- 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">write</span><span class="p">(</span><span class="nx">p1</span><span class="p">[</span><span class="nx">c</span><span class="p">:</span><span class="nx">d</span><span class="p">])</span> <span class="c1">// ---------- 2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">write</span><span class="p">(</span><span class="nx">p2</span><span class="p">[</span><span class="nx">e</span><span class="p">:</span><span class="nx">f</span><span class="p">])</span> <span class="c1">// ---------- 3
+</span></span></span><span class="line"><span class="cl"><span class="c1">// and so on
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>这样的处理方式很好，通过一个闭包，在使用同一个 <code>writer</code> 的情况下，在一个函数内传递 <code>err</code> 变量。在上面的例子最后，我们将得到一个最先出现的错误。</p>
+<p>首先是一个小问题，就是上面注释的步骤 <code>1</code>，<code>2</code>，<code>3</code> 中，如果在 <code>1</code> 错误已经发送，但是这个时候还不能及时返回，必须等到执行完成 <code>3</code> 后，进行 <code>if err != nil {}</code> 检查的时候才进行返回，也就是执行步骤为 <code>1-2-3</code>，而原来不使用闭包的写法上，执行步骤为 <code>1</code>，发生错误后下一步就是马上返回。</p>
+<p>接下来才是大问题，并不是所有代码里的错误来自于同一个操作（函数），针对不同的业务对象，它会有不同的调用，这时候又回到熟悉的 <code>Error check hell</code> 了。</p>
+<p>虽然上面的问题还没得到解决，那就继续完善现有方案吧。</p>
+<p>上面的代码还可以增加一个小技巧，让代码变得更顺畅，像流水一样，就是使用流式处理。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;bytes&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;encoding/binary&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 10 byte, 缺一个 byte
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">b</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">{</span><span class="mi">72</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">108</span><span class="p">,</span> <span class="mi">108</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">228</span><span class="p">,</span> <span class="mi">184</span><span class="p">,</span> <span class="mi">150</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">r</span> <span class="p">=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nf">NewReader</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Book</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Name</span>   <span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="kt">byte</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Author</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="kt">byte</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Num</span>    <span class="kt">uint8</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">err</span>    <span class="kt">error</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">b</span> <span class="o">*</span><span class="nx">Book</span><span class="p">)</span> <span class="nf">read</span><span class="p">(</span><span class="nx">data</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">b</span><span class="p">.</span><span class="nx">err</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">b</span><span class="p">.</span><span class="nx">err</span> <span class="p">=</span> <span class="nx">binary</span><span class="p">.</span><span class="nf">Read</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="nx">binary</span><span class="p">.</span><span class="nx">LittleEndian</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">b</span> <span class="o">*</span><span class="nx">Book</span><span class="p">)</span> <span class="nf">ReadName</span><span class="p">()</span> <span class="o">*</span><span class="nx">Book</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">b</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">b</span><span class="p">.</span><span class="nx">Name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">b</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">b</span> <span class="o">*</span><span class="nx">Book</span><span class="p">)</span> <span class="nf">ReadAuthor</span><span class="p">()</span> <span class="o">*</span><span class="nx">Book</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">b</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">b</span><span class="p">.</span><span class="nx">Author</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">b</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">b</span> <span class="o">*</span><span class="nx">Book</span><span class="p">)</span> <span class="nf">ReadNum</span><span class="p">()</span> <span class="o">*</span><span class="nx">Book</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">b</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">b</span><span class="p">.</span><span class="nx">Num</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">b</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">b</span> <span class="o">*</span><span class="nx">Book</span><span class="p">)</span> <span class="nf">Print</span><span class="p">()</span> <span class="o">*</span><span class="nx">Book</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">b</span><span class="p">.</span><span class="nx">err</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Book: %+v&#34;</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">b</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">b</span> <span class="o">:=</span> <span class="nx">Book</span><span class="p">{}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">b</span><span class="p">.</span><span class="nf">ReadName</span><span class="p">().</span><span class="nf">ReadAuthor</span><span class="p">().</span><span class="nf">ReadNum</span><span class="p">().</span><span class="nf">Print</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">b</span><span class="p">.</span><span class="nx">err</span><span class="p">)</span> <span class="c1">// EOF 错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><p>将<code>err error</code> 作为一个结构体的一个字段，在调用链中这个 <code>err</code> 会在方法调用中起屏障的作用。以此达到<strong>最先出现的错误，将导致后续逻辑停止被调用，并在可预期的未来得到处理。</strong></p>
+<p>题外话, 在 <a href="https://github.com/go-gorm/gorm" target="_blank" rel="noopener noreffer ">gorm</a> 中，你会看到这是一种标准行为，<code>DB</code> 结构体的定义为：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">DB</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="o">*</span><span class="nx">Config</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Error</span>        <span class="kt">error</span> <span class="c1">// &lt;--- 注意这里
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">RowsAffected</span> <span class="kt">int64</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Statement</span>    <span class="o">*</span><span class="nx">Statement</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">clone</span>        <span class="kt">int</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>然后你就会在源代码的很多地方发现诸如下面的，<strong>在执行逻辑前进行错误检查</strong>的代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">Query</span><span class="p">(</span><span class="nx">db</span> <span class="o">*</span><span class="nx">gorm</span><span class="p">.</span><span class="nx">DB</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">db</span><span class="p">.</span><span class="nx">Error</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="o">...</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="o">...</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="保留上下文信息">保留上下文信息</h3>
+<p>在接收到下层的返回错误时候，我们可能得到的不是一层调用错误得到的错误，这时候，保留调用链的，带有堆栈(上下文)信息的错误，对于调试和排查都显得十分重要。</p>
+<p>一般来说可以直接这样：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">SomeError</span> <span class="kd">struct</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Msg</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">err</span> <span class="kt">error</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">SomeError</span><span class="p">)</span> <span class="nf">Error</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;do %s get error: %v&#34;</span><span class="p">,</span> <span class="nx">s</span><span class="p">.</span><span class="nx">Msg</span><span class="p">,</span> <span class="nx">s</span><span class="p">.</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>将原始错误包裹在上一层自定义的错误中，添加一些需要的自定义信息。</p>
+<p>但是这样以来，原始的错误属性就会丢失在这一层包裹中。</p>
+<p>我们需要根据原始错误进行错误处理的时候就会遇到麻烦，诸如：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="k">switch</span> <span class="nx">err</span><span class="p">.(</span><span class="kd">type</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">case</span> <span class="nx">os</span><span class="p">.</span><span class="nx">ErrInvalid</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">		<span class="o">...</span>
+</span></span><span class="line"><span class="cl">	<span class="k">case</span> <span class="nx">os</span><span class="p">.</span><span class="nx">ErrPermission</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">		<span class="o">...</span>
+</span></span><span class="line"><span class="cl">	<span class="k">case</span> <span class="nx">os</span><span class="p">.</span><span class="nx">ErrExist</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	<span class="k">default</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">		<span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>这时候 <a href="https://github.com/pkg/errors" target="_blank" rel="noopener noreffer ">github.com/pkg/errors</a> 就可以派上用场了。</p>
+<p>Show you <a href="https://go.dev/play/p/X9qVjyPrdW-" target="_blank" rel="noopener noreffer ">my code</a>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;log&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/pkg/errors&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">sendErr</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">err</span> <span class="p">=</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">Wrap</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;warp error&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">switch</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">Cause</span><span class="p">(</span><span class="nx">err</span><span class="p">).(</span><span class="kd">type</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">case</span> <span class="o">*</span><span class="nx">DivZero</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// handle specifically
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;caught! original error:&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">default</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// unknown error
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;unknown! &#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">operationError</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">operation</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">err</span>       <span class="kt">error</span> <span class="c1">// original error
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">DivZero</span> <span class="kd">struct</span><span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">myerr</span> <span class="o">*</span><span class="nx">DivZero</span><span class="p">)</span> <span class="nf">Error</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="s">&#34;Cannot divide by 0!&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">sendErr</span><span class="p">()</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">a</span> <span class="o">:=</span> <span class="nx">operationError</span><span class="p">{</span><span class="nx">err</span><span class="p">:</span> <span class="nb">new</span><span class="p">(</span><span class="nx">DivZero</span><span class="p">)}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nx">a</span><span class="p">.</span><span class="nx">err</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>输出：</p>
+<pre tabindex="0"><code>2009/11/10 23:00:00 warp error: Cannot divide by 0!
+2009/11/10 23:00:00 caught! original error: Cannot divide by 0!
+</code></pre><p>这里的奥妙是使用 <code>errors.Wrap</code> 进行包装的 <code>error</code>，可以使用 <code>errors.Cause(err)</code> 通过递归检索，暴露出原始错误。</p>
+<p>原理可见 <a href="https://github.com/pkg/errors#retrieving-the-cause-of-an-error" target="_blank" rel="noopener noreffer ">pkg/errors - Retrieving the cause of an error</a> 或者源码 <a href="https://github.com/pkg/errors/blob/master/errors.go" target="_blank" rel="noopener noreffer ">errors.go</a> (非常简洁，充分利用 <code>interface</code> 原理)。</p>
+<p>目前看来，我们的两个问题都可以得出答案了：</p>
+<ol>
+<li>
+<p>对单一业务对象可以进行优雅的错误处理，还没有出现可以一举消灭 <code>Error check hell</code> 的方法；</p>
+</li>
+<li>
+<p>对错误能保留上下文(堆栈)信息，可以使用 <code>github.com/pkg/errors</code> 做到很好地错误包裹和保证原始错误检查。</p>
+</li>
+</ol>
+<h1 id="未来">未来</h1>
+<blockquote>
+<p>Go2 草案中的蛛丝马迹</p>
+</blockquote>
+<p>说完现状，展望一下未来吧。由于 <a href="https://github.com/pkg/errors#roadmap" target="_blank" rel="noopener noreffer ">github.com/pkg/errors#roadmap</a> 中提到了 <a href="https://go.googlesource.com/proposal/&#43;/master/design/go2draft.md" target="_blank" rel="noopener noreffer ">Go2 error proposals</a>，于是我去窥探了一下未来 👁️ 。</p>
+<p>由于还是在草案阶段，我重点关注如何消灭 <code>Error check hell</code> 和 <a href="https://go.googlesource.com/proposal/&#43;/master/design/go2draft-error-handling.md#stack-frame-preservation" target="_blank" rel="noopener noreffer ">Stack frame preservation</a> 这两方面，以及由此拓展出来的部分内容。</p>
+<p><a href="https://go.googlesource.com/proposal/&#43;/master/design/go2draft-error-handling-overview.md" target="_blank" rel="noopener noreffer ">overview</a> 和 <a href="https://go.googlesource.com/proposal/&#43;/master/design/go2draft-error-handling.md" target="_blank" rel="noopener noreffer ">draft design</a> 这两部分，我的结论是 <code>TL;DR</code>。</p>
+<p>我的意思是：Too long, but deserve to read. 哈哈哈哈</p>
+<p>通过一个例子，总结一下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">process</span><span class="p">(</span><span class="nx">user</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">files</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">n</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">handle</span> <span class="nx">err</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;process: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>  <span class="p">}</span>      <span class="c1">// handler A
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">handle</span> <span class="nx">err</span> <span class="p">{</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;attempt %d: %v&#34;</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span> <span class="p">}</span> <span class="c1">// handler B
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">handle</span> <span class="nx">err</span> <span class="p">{</span> <span class="nx">err</span> <span class="p">=</span> <span class="nf">moreWrapping</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">}</span>                    <span class="c1">// handler C
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">        <span class="nx">check</span> <span class="nf">do</span><span class="p">(</span><span class="nf">something</span><span class="p">())</span>  <span class="c1">// check 1: handler chain C, B, A
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">val</span> <span class="o">:=</span> <span class="nx">check</span> <span class="nf">do</span><span class="p">(</span><span class="nf">somethingElse</span><span class="p">())</span>  <span class="c1">// check 2: handler chain A
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">return</span> <span class="nx">val</span><span class="p">,</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>使用 <code>check/handle</code> 关键字，对返回值最后一个中的 <code>error</code> 进行 <code>check</code> ，并在作用域内由最上一层的 <code>handle</code> 进行处理。类似 <code>defer</code>，但与它不同的是 <code>handle</code> 和变量一样，有自己的作用域。</p>
+<p>这样的处理，更符合 <code>DRY</code> 原则，每一次的 <code>check</code> 之后只需要接受不包含错误的其他返回值，<code>handle</code> 也是定义每一层自己的错误处理。</p>
+<p>它似乎很完美地解决了之前困扰我们的不同业务对象无法消灭 <code>Error check hell</code> 的困境。</p>
+<p>草案中 <a href="https://go.googlesource.com/proposal/&#43;/master/design/go2draft-error-handling.md#stack-frame-preservation" target="_blank" rel="noopener noreffer ">Stack frame preservation</a> 部分中并没有要针对<strong>保留错误的上下文信息</strong>能力进行改进的意思。总的来说，继续使用 <code>github.com/pkg/errors</code> 也是不错的选择。</p>
+<hr>
+<p>reference:</p>
+<ul>
+<li>errors 库 <a href="https://github.com/pkg/errors" target="_blank" rel="noopener noreffer ">https://github.com/pkg/errors</a></li>
+<li>随手写的 demo 代码 <a href="https://go.dev/play/p/X9qVjyPrdW-" target="_blank" rel="noopener noreffer ">https://go.dev/play/p/X9qVjyPrdW-</a></li>
+<li>GO 编程模式：错误处理 &ndash; CoolShell <a href="https://coolshell.cn/articles/21140.html" target="_blank" rel="noopener noreffer ">https://coolshell.cn/articles/21140.html</a></li>
+<li>Golang Error Handling lesson by Rob Pike &ndash; Jxck <a href="https://jxck.hatenablog.com/entry/golang-error-handling-lesson-by-rob-pike" target="_blank" rel="noopener noreffer ">https://jxck.hatenablog.com/entry/golang-error-handling-lesson-by-rob-pike</a></li>
+<li>Errors are values &ndash; Rob Pike <a href="https://go.dev/blog/errors-are-values" target="_blank" rel="noopener noreffer ">https://go.dev/blog/errors-are-values</a></li>
+<li>Go2 草案有关于错误处理的部分
+<ul>
+<li><a href="https://go.googlesource.com/proposal/&#43;/master/design/go2draft-error-handling-overview.md" target="_blank" rel="noopener noreffer ">https://go.googlesource.com/proposal/+/master/design/go2draft-error-handling-overview.md</a></li>
+<li><a href="https://go.googlesource.com/proposal/&#43;/master/design/go2draft-error-handling.md" target="_blank" rel="noopener noreffer ">https://go.googlesource.com/proposal/+/master/design/go2draft-error-handling.md</a></li>
+</ul>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-05-20</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://spike014.github.io/posts/tech/error-handing-in-go/" data-title="Error Handing in Go" data-via="map[id:real_spike014 prefix:https://twitter.com/ title:Twitter weight:2]"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://spike014.github.io/posts/tech/error-handing-in-go/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://spike014.github.io/posts/tech/error-handing-in-go/" data-title="Error Handing in Go"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://spike014.github.io/posts/tech/error-handing-in-go/" data-title="Error Handing in Go"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://spike014.github.io/posts/tech/error-handing-in-go/" data-title="Error Handing in Go"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/think/how-do-i-read-a-book/" class="prev" rel="prev" title="我是怎么阅读一本书的？"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>我是怎么阅读一本书的？</a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/spike014" target="_blank">spike014</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"gitalk":{"admin":["spike014"],"clientID":"7d0a43abf1fe41fae214","clientSecret":"ce54dbbb801164b10eb422a9ff117eb711439f9e","id":"2023-05-20T02:29:51Z","owner":"spike014","repo":"spike014.github.io","title":"Error Handing in Go"}},"data":{"id-1":"spike014 site","id-2":"spike014 site"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":150}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

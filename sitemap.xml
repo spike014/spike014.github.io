@@ -2,8 +2,9 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>http://spike014.github.io/posts/</loc><lastmod>2023-05-06T23:05:54&#43;08:00</lastmod></url><url>
-            <loc>http://spike014.github.io/</loc><lastmod>2023-05-06T23:05:54&#43;08:00</lastmod></url><url>
+            <loc>http://spike014.github.io/posts/tech/error-handing-in-go/</loc><lastmod>2023-05-20T02:29:51&#43;00:00</lastmod></url><url>
+            <loc>http://spike014.github.io/posts/</loc><lastmod>2023-05-20T02:29:51&#43;00:00</lastmod></url><url>
+            <loc>http://spike014.github.io/</loc><lastmod>2023-05-20T02:29:51&#43;00:00</lastmod></url><url>
             <loc>http://spike014.github.io/tags/</loc><lastmod>2023-05-06T23:05:54&#43;08:00</lastmod></url><url>
             <loc>http://spike014.github.io/tags/%E6%80%9D%E8%80%83/</loc><lastmod>2023-05-06T23:05:54&#43;08:00</lastmod></url><url>
             <loc>http://spike014.github.io/posts/think/how-do-i-read-a-book/</loc><lastmod>2023-05-06T23:05:54&#43;08:00</lastmod></url><url>
