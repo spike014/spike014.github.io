@@ -1,0 +1,23 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Go - Tag - spike014 site</title>
+        <link>http://spike014.github.io/tags/go/</link>
+        <description>Go - Tag - spike014 site</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>spike014</copyright><lastBuildDate>Sat, 20 May 2023 02:29:51 &#43;0000</lastBuildDate><atom:link href="http://spike014.github.io/tags/go/" rel="self" type="application/rss+xml" /><item>
+    <title>Error Handing in Go</title>
+    <link>http://spike014.github.io/posts/tech/error-handing-in-go/</link>
+    <pubDate>Sat, 20 May 2023 02:29:51 &#43;0000</pubDate>
+    <author>spike014</author>
+    <guid>http://spike014.github.io/posts/tech/error-handing-in-go/</guid>
+    <description><![CDATA[现状 错误处理，是编程中绕不过的话题。 一个思考，最先出现的错误都应该尽快进行错误处理。 if err != nil { ... } 相信写过 Go 的，对上面这个都不陌生。 如果说 if-else]]></description>
+</item>
+<item>
+    <title>sql.DB 以何种方式进行初始化，保存，使用?</title>
+    <link>http://spike014.github.io/posts/how-to-initialize-sql.db-in-go/</link>
+    <pubDate>Tue, 06 Sep 2022 16:55:05 &#43;0800</pubDate>
+    <author>spike014</author>
+    <guid>http://spike014.github.io/posts/how-to-initialize-sql.db-in-go/</guid>
+    <description><![CDATA[起因: 《100 Go Mistakes and How to Avoid Them 》 “2.3 Misusing init functions”： In the init function, we will open a database using sql.Open. We will make this database a global variable that functions can later use. var db *sql.DB func init() { dataSourceName := os.Getenv(&#34;MYSQL_DATA_SOURCE_NAME&#34;) d, err := sql.Open(&#34;mysql&#34;, dataSourceName)]]></description>
+</item>
+</channel>
+</rss>

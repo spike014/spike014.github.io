@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Linux - Tag - spike014 site</title>
+        <link>http://spike014.github.io/tags/linux/</link>
+        <description>Linux - Tag - spike014 site</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>spike014</copyright><lastBuildDate>Tue, 28 Mar 2023 23:22:19 &#43;0800</lastBuildDate><atom:link href="http://spike014.github.io/tags/linux/" rel="self" type="application/rss+xml" /><item>
+    <title>低成本运维你的 Linux(肉鸡)。Low Cost Maintenance of Your Linux</title>
+    <link>http://spike014.github.io/posts/tech/low-cost-maintenance-your-linux/</link>
+    <pubDate>Tue, 28 Mar 2023 23:22:19 &#43;0800</pubDate>
+    <author>spike014</author>
+    <guid>http://spike014.github.io/posts/tech/low-cost-maintenance-your-linux/</guid>
+    <description><![CDATA[背景 现在国内各大小公司工作的程序员们，有些公司有专门的运维守着机器，有些则是由开发人员自己在兼职运维。 此间可谓人生百态，各种乱象丛生。 有 root 密]]></description>
+</item>
+</channel>
+</rss>
