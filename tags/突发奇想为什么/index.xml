@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>突发奇想为什么 - Tag - spike014 site</title>
+        <link>http://spike014.github.io/tags/%E7%AA%81%E5%8F%91%E5%A5%87%E6%83%B3%E4%B8%BA%E4%BB%80%E4%B9%88/</link>
+        <description>突发奇想为什么 - Tag - spike014 site</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>spike014</copyright><lastBuildDate>Sun, 21 May 2023 22:14:28 &#43;0800</lastBuildDate><atom:link href="http://spike014.github.io/tags/%E7%AA%81%E5%8F%91%E5%A5%87%E6%83%B3%E4%B8%BA%E4%BB%80%E4%B9%88/" rel="self" type="application/rss+xml" /><item>
+    <title>输入网址按下回车会发生什么？（科学上网版）</title>
+    <link>http://spike014.github.io/posts/tech/what-happened-when-type-url/</link>
+    <pubDate>Sun, 21 May 2023 22:14:28 &#43;0800</pubDate>
+    <author>spike014</author>
+    <guid>http://spike014.github.io/posts/tech/what-happened-when-type-url/</guid>
+    <description><![CDATA[今天又看到有人在社交媒体上，说起一个经典的问题： 在浏览器的地址栏输入网址，按下回车键之后会发生什么？ 这里我不想讨论经典的八股文，我会在这个问]]></description>
+</item>
+</channel>
+</rss>
