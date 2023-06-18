@@ -3,7 +3,15 @@
         <title>All Posts - spike014 site</title>
         <link>http://spike014.github.io/posts/</link>
         <description>All Posts | spike014 site</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>spike014</copyright><lastBuildDate>Sun, 21 May 2023 22:14:28 &#43;0800</lastBuildDate><atom:link href="http://spike014.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>spike014</copyright><lastBuildDate>Sun, 18 Jun 2023 01:18:36 &#43;0000</lastBuildDate><atom:link href="http://spike014.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Days I Studied CS61A</title>
+    <link>http://spike014.github.io/posts/think/days-i-studied-cs61a/</link>
+    <pubDate>Sun, 18 Jun 2023 01:18:36 &#43;0000</pubDate>
+    <author>spike014</author>
+    <guid>http://spike014.github.io/posts/think/days-i-studied-cs61a/</guid>
+    <description><![CDATA[前言 今天是我完成 CS61A 的日子。从我开始学习到结束，历时一个半月。当然我是有一点基础的，所以其中某些部分会进行跳过，但是总的来说，基本所有的 lecture 我都]]></description>
+</item>
+<item>
     <title>输入网址按下回车会发生什么？（科学上网版）</title>
     <link>http://spike014.github.io/posts/tech/what-happened-when-type-url/</link>
     <pubDate>Sun, 21 May 2023 22:14:28 &#43;0800</pubDate>
@@ -74,14 +82,6 @@
     <author>spike014</author>
     <guid>http://spike014.github.io/posts/aboutsoftware-engineering-at-google/</guid>
     <description><![CDATA[《Software Engineering at Google》： 前言，序言 什么是软件工程？ EN: https://abseil.io/resources/swe-book/html/toc.html CN: https://qiangmzsx.github.io/Software-Engineering-at-Google/#/ 前言 技术的伟大之处在于，做一件事永远不会只有一种方法。相反，有一系列]]></description>
-</item>
-<item>
-    <title>软件设计哲学 6-21</title>
-    <link>http://spike014.github.io/posts/a-philosophy-of-software-design-6-21/</link>
-    <pubDate>Mon, 01 Aug 2022 11:52:39 &#43;0800</pubDate>
-    <author>spike014</author>
-    <guid>http://spike014.github.io/posts/a-philosophy-of-software-design-6-21/</guid>
-    <description><![CDATA[原书： 2018 ed : https://milkov.tech/assets/psd.pdf 2021 ed : https://web.stanford.edu/~ouster/cgi-bin/aposd2ndEdExtract.pdf 通用模块更深入 如果减少 API 中的方法数量而不降低其整体功能，则可能正在创建更多通用的方法。 在多少情况下会使用此方法？ 如果一]]></description>
 </item>
 </channel>
 </rss>

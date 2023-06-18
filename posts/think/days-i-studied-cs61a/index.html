@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Days I Studied CS61A - spike014 site</title><meta name="Description" content="spike014 site"><meta property="og:title" content="Days I Studied CS61A" />
+<meta property="og:description" content="前言 今天是我完成 CS61A 的日子。从我开始学习到结束，历时一个半月。当然我是有一点基础的，所以其中某些部分会进行跳过，但是总的来说，基本所有的 lecture 我都" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://spike014.github.io/posts/think/days-i-studied-cs61a/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-06-18T01:18:36+00:00" />
+<meta property="article:modified_time" content="2023-06-18T01:18:36+00:00" /><meta property="og:site_name" content="spike014 site" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Days I Studied CS61A"/>
+<meta name="twitter:description" content="前言 今天是我完成 CS61A 的日子。从我开始学习到结束，历时一个半月。当然我是有一点基础的，所以其中某些部分会进行跳过，但是总的来说，基本所有的 lecture 我都"/>
+<meta name="application-name" content="spike014 site">
+<meta name="apple-mobile-web-app-title" content="spike014 site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://spike014.github.io/posts/think/days-i-studied-cs61a/" /><link rel="prev" href="http://spike014.github.io/posts/tech/what-happened-when-type-url/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Days I Studied CS61A",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/spike014.github.io\/posts\/think\/days-i-studied-cs61a\/"
+        },"genre": "posts","wordcount":  1572 ,
+        "url": "http:\/\/spike014.github.io\/posts\/think\/days-i-studied-cs61a\/","datePublished": "2023-06-18T01:18:36+00:00","dateModified": "2023-06-18T01:18:36+00:00","license": "spike014","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "spike014"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="spike014 site"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="spike014 site"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Days I Studied CS61A</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/spike014" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>spike014</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-06-18">2023-06-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1572 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#前言">前言</a></li>
+        <li><a href="#缘起">缘起</a></li>
+        <li><a href="#过程">过程</a>
+          <ul>
+            <li><a href="#体验">体验</a></li>
+            <li><a href="#收获">收获</a></li>
+            <li><a href="#last-but-not-least">Last but not least</a></li>
+          </ul>
+        </li>
+        <li><a href="#what-is-next">What is next?</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="前言">前言</h2>
+<p>今天是我完成 <a href="https://inst.eecs.berkeley.edu/~cs61a/fa20/" target="_blank" rel="noopener noreffer "><code>CS61A</code></a> 的日子。从我开始学习到结束，历时一个半月。当然我是有一点基础的，所以其中某些部分会进行跳过，但是总的来说，基本所有的 <code>lecture</code> 我都会过一遍，如果遇到难啃的部分甚至会再看下 <code>discussion</code> 部分。这篇主要是记录我这段时间的感受和收获。</p>
+<h2 id="缘起">缘起</h2>
+<p>学习这门课程并不是误打误撞，随性而起的。</p>
+<p>起因是我在豆瓣的 <a href="https://m.douban.com/subject_collection/ECJQKRGAY" target="_blank" rel="noopener noreffer ">程序员书单</a>看 到 <a href="https://book.douban.com/subject/1148282/" target="_blank" rel="noopener noreffer ">计算机程序的构造和解释</a> 这本书。其实很早之前就听说过这本书，但是那会翻了以下，发现 <code>Lisp</code> 语言对我来说还是有些恼人。各种括号，是我还没理解那属于老法师的浪漫。所以就放下了。</p>
+<p>后来读了<a href="https://book.douban.com/subject/6021440/" target="_blank" rel="noopener noreffer ">黑客与画家</a>，里面作者对 <code>Lisp</code> 大为推崇，而且他对于语言的观点让我耳目一新。由此及彼，我想起这之前没看下去的上述那本书。</p>
+<p>既然我还没有时间抽出来学习 <code>Lisp</code>，它又是一门函数式编程语言，现在使用的人相比其他流行的语言来说是不多的，遇到我这种情况的人，应该不少，或许已经有人把它用 <code>JS</code> <code>Python</code> 之类的解释型脚本语言翻了一遍？</p>
+<p>果然 <a href="https://github.com/source-academy/sicp" target="_blank" rel="noopener noreffer ">SICP JS</a> 和 <a href="https://composingprograms.com/" target="_blank" rel="noopener noreffer ">SICP using Python3 &ndash; CS61A textbook</a> 是有的，在我输出 <code>sicp</code> 关键字的时候已经跳出来 <code>js</code> 和 <code>python</code> 这两个提示词。我想也许是它俩的函数式编程特性支持的太明显了吧。</p>
+<p>一看有一版是竟然是 <code>UCB</code> 的教材，那自然质量是有保证的。</p>
+<p>一看课程表，还有 <code>lecture</code> 视频可以看，各种 <code>lab</code>, <code>hw</code>, <code>project</code> 都是公开的。我何不趁此机会体验一下国外知名大学的教育呢？随然没有身在其中，失去氛围的熏陶，但是我还是觉得花时间去跟学，会有不少收获。</p>
+<p>秉持这这种新鲜感和对 <code>sicp</code> 这本原书和 <code>UCB</code> 的慕名，我开始了 <code>CS61A Fa20</code> 的学习。并在推特上用一条 <a href="https://twitter.com/real_spike014/status/1650150840353816576" target="_blank" rel="noopener noreffer "><code>thread</code></a>  进行记录。</p>
+<h2 id="过程">过程</h2>
+<h3 id="体验">体验</h3>
+<p>可以看出，授课老师是认真备课，而且在不断改进课程的，因为每个视频都是不同时期录制的，只有老师觉得需要改进的部分才会进行重新录制。</p>
+<p>有一个细节，每一个 <code>lab</code> 和 <code>hw</code> <code>基本都是相同部分的内容，但是他们被安排在相近的日期之内，hw</code> 有 hint video, <code>lab</code> 可以找 <code>TA</code> 进行协助。所有的一切一切都只在帮助你更好地掌握知识。</p>
+<h3 id="收获">收获</h3>
+<p>总的来说，我并不是零基础，因此这门课给我也不是进行入门的。</p>
+<p>这一个半月下来，给我印象最深的部分就是：</p>
+<ul>
+<li>递归</li>
+</ul>
+<p>最开心的时候，还记得是在做最后一个 <code>project</code>, 发现竟然可以通过两个函数相互调用，递归地去解决一个问题。这个时候实在是太有成就感了。我相信这种左右搭右手式的解决方法将会在我的脑海里存在，一直存在，因为那个时刻给我的印象太深刻了。</p>
+<ul>
+<li>抽象</li>
+</ul>
+<p>这门课其实前半部分其实一直花很大篇幅在传递一个信号：将问题分析出来，抽象，再写代码解决问题。</p>
+<p>前三个 <code>projects</code> 本质上就是要培养起这个能力。</p>
+<p>然后最后一个 <code>project</code> 带你进行难度上一个台阶的问题。</p>
+<p>在 <code>OOP</code> 编程中去完成一个函数式编程的解释器和执行器。通过这个设计，既然掌握了 <code>OOP</code> ，又深入理解了函数式编程的奥秘。可以感受到课程老师们的用心良苦，想起国内大量的 <code>PPT</code> 阅读者，不难理解为什么每年毕业季都是最难就业季。</p>
+<ul>
+<li>scheme</li>
+</ul>
+<p>终于到后半部分，终于来到重头戏， <code>scheme</code> 。因为我之前接触过 <code>OOP</code> 等概念，所以前半部相当于复习。</p>
+<p>这部分是收获最大的部分：</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=930hFYO2nvU&amp;list=PL6BsET-8jgYVJS4HxXjMZDzJyzn4Mujjl" target="_blank" rel="noopener noreffer ">Calculator</a></li>
+<li><a href="https://www.youtube.com/watch?v=iLprw73OXzI&amp;list=PL6BsET-8jgYXqdqkfT6lcSuek6H4FB31V" target="_blank" rel="noopener noreffer ">Interpreters</a></li>
+</ul>
+<p>学习完这两部分，我甚至可以自己去写一门微语言了。其实实现简单的运算不难，主要就是解释器和执行计算的执行器组成。远看以为发明一门语言是一个很庞杂的工作，其实还是由一些最基础的组件组成。根本没必要畏难。所有复杂问题都可以拆解成小问题，一步一步去解决。如果不行，那是问题还没被正在理解和拆解罢了。</p>
+<h3 id="last-but-not-least">Last but not least</h3>
+<p>这种形式的自学，比起在课堂上听老师读 <code>PPT</code> ，算得上是一种真正的受教育。</p>
+<p>课上有举例，有一言不合 show me your code, 有答疑会在专门的讨论课得到解答。</p>
+<p>课后有测试机，帮助你实时验证你的输入，就像在做 <code>LeetCode</code> 一样。</p>
+<p>当然，还有体验不到的 <code>TA</code>　协助，以及　<code>office time</code>.</p>
+<p>这才知道为什么那些在校生都在看这些，才知道英语世界的资料是如此的丰富，才知道自己以前错过了这么多宝贵的资源。</p>
+<p>迈开腿，翻越那堵墙，去发现更大的世界，很多世界顶级的内容在等着你。</p>
+<h2 id="what-is-next">What is next?</h2>
+<p>接下来，我准备在休息时间，做一下这些：</p>
+<ul>
+<li>
+<p><a href="http://csapp.cs.cmu.edu/" target="_blank" rel="noopener noreffer ">CMU CS15213: CSAPP</a></p>
+</li>
+<li>
+<p><a href="https://pdos.csail.mit.edu/6.828/2020/schedule.html" target="_blank" rel="noopener noreffer ">MIT 6.S081</a></p>
+</li>
+<li>
+<p>学习 <a href="https://clojure.org/" target="_blank" rel="noopener noreffer ">clojure</a></p>
+</li>
+</ul>
+<p>这几项估计我要学上个大半年。期待学完之后的自己，对接下来的挑战充满期待哈哈哈！</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-06-18</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://spike014.github.io/posts/think/days-i-studied-cs61a/" data-title="Days I Studied CS61A" data-via="map[id:real_spike014 prefix:https://twitter.com/ title:Twitter weight:2]"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://spike014.github.io/posts/think/days-i-studied-cs61a/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://spike014.github.io/posts/think/days-i-studied-cs61a/" data-title="Days I Studied CS61A"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://spike014.github.io/posts/think/days-i-studied-cs61a/" data-title="Days I Studied CS61A"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://spike014.github.io/posts/think/days-i-studied-cs61a/" data-title="Days I Studied CS61A"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/tech/what-happened-when-type-url/" class="prev" rel="prev" title="输入网址按下回车会发生什么？（科学上网版）"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>输入网址按下回车会发生什么？（科学上网版）</a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/spike014" target="_blank">spike014</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"gitalk":{"admin":["spike014"],"clientID":"7d0a43abf1fe41fae214","clientSecret":"ce54dbbb801164b10eb422a9ff117eb711439f9e","id":"2023-06-18T01:18:36Z","owner":"spike014","repo":"spike014.github.io","title":"Days I Studied CS61A"}},"data":{"id-1":"spike014 site","id-2":"spike014 site"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":150}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
