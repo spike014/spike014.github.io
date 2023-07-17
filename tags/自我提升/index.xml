@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>自我提升 - Tag - spike014 site</title>
+        <link>http://spike014.github.io/tags/%E8%87%AA%E6%88%91%E6%8F%90%E5%8D%87/</link>
+        <description>自我提升 - Tag - spike014 site</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>spike014</copyright><lastBuildDate>Mon, 12 Jun 2023 01:18:36 &#43;0000</lastBuildDate><atom:link href="http://spike014.github.io/tags/%E8%87%AA%E6%88%91%E6%8F%90%E5%8D%87/" rel="self" type="application/rss+xml" /><item>
+    <title>Days I Studied CS61A</title>
+    <link>http://spike014.github.io/posts/think/days-i-studied-cs61a/</link>
+    <pubDate>Mon, 12 Jun 2023 01:18:36 &#43;0000</pubDate>
+    <author>spike014</author>
+    <guid>http://spike014.github.io/posts/think/days-i-studied-cs61a/</guid>
+    <description><![CDATA[前言 今天是我完成 CS61A 的日子。从我开始学习到结束，历时一个半月。当然我是有一点基础的，所以其中某些部分会进行跳过，但是总的来说，基本所有的 lecture 我都]]></description>
+</item>
+</channel>
+</rss>
