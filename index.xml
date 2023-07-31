@@ -3,9 +3,17 @@
         <title>spike014 site</title>
         <link>http://spike014.github.io/</link>
         <description>spike014 site</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>spike014</copyright><lastBuildDate>Fri, 14 Jul 2023 08:33:55 &#43;0000</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>spike014</copyright><lastBuildDate>Mon, 31 Jul 2023 02:21:12 &#43;0000</lastBuildDate>
             <atom:link href="http://spike014.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Thoughts on Stack Overflow&#39;s Release of OverflowAI</title>
+    <link>http://spike014.github.io/posts/think/thoughts-on-stack-overflow-release-of-overflowai/</link>
+    <pubDate>Mon, 31 Jul 2023 02:21:12 &#43;0000</pubDate>
+    <author>spike014</author>
+    <guid>http://spike014.github.io/posts/think/thoughts-on-stack-overflow-release-of-overflowai/</guid>
+    <description><![CDATA[今天，Stack Overflow 宣布推出自己的 AI 工具，前几个月他宣布 ban 掉 AI 的画面还历历在目，这里更加引发我去思考两个问题： 企业在 AI 时代不去拥抱，是否会被淘]]></description>
+</item>
+<item>
     <title>Days I Stayed Away From My Phone</title>
     <link>http://spike014.github.io/posts/think/days-i-stayed-away-from-my-phone/</link>
     <pubDate>Fri, 14 Jul 2023 08:33:55 &#43;0000</pubDate>
