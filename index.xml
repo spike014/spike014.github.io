@@ -3,9 +3,17 @@
         <title>spike014 site</title>
         <link>http://spike014.github.io/</link>
         <description>spike014 site</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>spike014</copyright><lastBuildDate>Mon, 31 Jul 2023 02:21:12 &#43;0000</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>spike014</copyright><lastBuildDate>Sun, 17 Sep 2023 15:31:52 &#43;0800</lastBuildDate>
             <atom:link href="http://spike014.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Days in Zolplay</title>
+    <link>http://spike014.github.io/posts/daily/days-in-zolplay/</link>
+    <pubDate>Sun, 17 Sep 2023 15:31:52 &#43;0800</pubDate>
+    <author>spike014</author>
+    <guid>http://spike014.github.io/posts/daily/days-in-zolplay/</guid>
+    <description><![CDATA[转眼已经加入 Zolplay 的两周了。 先说结论，现在的我，好幸福。 而起因是我加入 Zolplay 。 同事都是很有趣的人，大家一顿玩梗 ( 特别是你 👉 Will )，让我也跟着乐在其中。]]></description>
+</item>
+<item>
     <title>Thoughts on Stack Overflow&#39;s Release of OverflowAI</title>
     <link>http://spike014.github.io/posts/think/thoughts-on-stack-overflow-release-of-overflowai/</link>
     <pubDate>Mon, 31 Jul 2023 02:21:12 &#43;0000</pubDate>
@@ -116,14 +124,6 @@
     <author>spike014</author>
     <guid>http://spike014.github.io/posts/about-a-philosophy-of-software-design-1-5/</guid>
     <description><![CDATA[原书： 2018 ed : https://milkov.tech/assets/psd.pdf 2021 ed : https://web.stanford.edu/~ouster/cgi-bin/aposd2ndEdExtract.pdf 复杂性 症状 变更放大：看似简单的变更需要在许多不同地方进行代码修改。 认知负荷：开发人员需要多少知识才能完成一项任务。较高]]></description>
-</item>
-<item>
-    <title>My First Post</title>
-    <link>http://spike014.github.io/posts/my-first-post/</link>
-    <pubDate>Sat, 16 Jul 2022 13:36:31 &#43;0800</pubDate>
-    <author>spike014</author>
-    <guid>http://spike014.github.io/posts/my-first-post/</guid>
-    <description><![CDATA[First post func main() { fmt.Println(&#34;Hello Hugo!&#34;) } ]]></description>
 </item>
 </channel>
 </rss>
