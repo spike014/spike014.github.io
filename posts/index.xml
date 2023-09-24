@@ -3,7 +3,15 @@
         <title>All Posts - spike014 site</title>
         <link>http://spike014.github.io/posts/</link>
         <description>All Posts | spike014 site</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>spike014</copyright><lastBuildDate>Sun, 17 Sep 2023 15:31:52 &#43;0800</lastBuildDate><atom:link href="http://spike014.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>spike014</copyright><lastBuildDate>Sat, 23 Sep 2023 10:40:47 &#43;0800</lastBuildDate><atom:link href="http://spike014.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>How to Define Engineer</title>
+    <link>http://spike014.github.io/posts/think/how-to-define-engineer/</link>
+    <pubDate>Sat, 23 Sep 2023 10:40:47 &#43;0800</pubDate>
+    <author>spike014</author>
+    <guid>http://spike014.github.io/posts/think/how-to-define-engineer/</guid>
+    <description><![CDATA[如何定义一个工程师 这里说的如何定义指的是工程师的前缀，目前有前端工程师，后端工程师，全栈工程师，数据库内核开发工程师，SRE 工程师，Dev-]]></description>
+</item>
+<item>
     <title>Days in Zolplay</title>
     <link>http://spike014.github.io/posts/daily/days-in-zolplay/</link>
     <pubDate>Sun, 17 Sep 2023 15:31:52 &#43;0800</pubDate>
@@ -74,14 +82,6 @@
     <author>spike014</author>
     <guid>http://spike014.github.io/posts/tech/low-cost-maintenance-your-linux/</guid>
     <description><![CDATA[背景 现在国内各大小公司工作的程序员们，有些公司有专门的运维守着机器，有些则是由开发人员自己在兼职运维。 此间可谓人生百态，各种乱象丛生。 有 root 密]]></description>
-</item>
-<item>
-    <title>sql.DB 以何种方式进行初始化，保存，使用?</title>
-    <link>http://spike014.github.io/posts/how-to-initialize-sql.db-in-go/</link>
-    <pubDate>Tue, 06 Sep 2022 16:55:05 &#43;0800</pubDate>
-    <author>spike014</author>
-    <guid>http://spike014.github.io/posts/how-to-initialize-sql.db-in-go/</guid>
-    <description><![CDATA[起因: 《100 Go Mistakes and How to Avoid Them 》 “2.3 Misusing init functions”： In the init function, we will open a database using sql.Open. We will make this database a global variable that functions can later use. var db *sql.DB func init() { dataSourceName := os.Getenv(&#34;MYSQL_DATA_SOURCE_NAME&#34;) d, err := sql.Open(&#34;mysql&#34;, dataSourceName)]]></description>
 </item>
 </channel>
 </rss>

@@ -3,9 +3,17 @@
         <title>spike014 site</title>
         <link>http://spike014.github.io/</link>
         <description>spike014 site</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>spike014</copyright><lastBuildDate>Sun, 17 Sep 2023 15:31:52 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>spike014</copyright><lastBuildDate>Sat, 23 Sep 2023 10:40:47 &#43;0800</lastBuildDate>
             <atom:link href="http://spike014.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>How to Define Engineer</title>
+    <link>http://spike014.github.io/posts/think/how-to-define-engineer/</link>
+    <pubDate>Sat, 23 Sep 2023 10:40:47 &#43;0800</pubDate>
+    <author>spike014</author>
+    <guid>http://spike014.github.io/posts/think/how-to-define-engineer/</guid>
+    <description><![CDATA[如何定义一个工程师 这里说的如何定义指的是工程师的前缀，目前有前端工程师，后端工程师，全栈工程师，数据库内核开发工程师，SRE 工程师，Dev-]]></description>
+</item>
+<item>
     <title>Days in Zolplay</title>
     <link>http://spike014.github.io/posts/daily/days-in-zolplay/</link>
     <pubDate>Sun, 17 Sep 2023 15:31:52 &#43;0800</pubDate>
@@ -116,14 +124,6 @@
     <author>spike014</author>
     <guid>http://spike014.github.io/posts/a-philosophy-of-software-design-6-21/</guid>
     <description><![CDATA[原书： 2018 ed : https://milkov.tech/assets/psd.pdf 2021 ed : https://web.stanford.edu/~ouster/cgi-bin/aposd2ndEdExtract.pdf 通用模块更深入 如果减少 API 中的方法数量而不降低其整体功能，则可能正在创建更多通用的方法。 在多少情况下会使用此方法？ 如果一]]></description>
-</item>
-<item>
-    <title>软件设计哲学 1-5</title>
-    <link>http://spike014.github.io/posts/about-a-philosophy-of-software-design-1-5/</link>
-    <pubDate>Thu, 21 Jul 2022 10:20:27 &#43;0800</pubDate>
-    <author>spike014</author>
-    <guid>http://spike014.github.io/posts/about-a-philosophy-of-software-design-1-5/</guid>
-    <description><![CDATA[原书： 2018 ed : https://milkov.tech/assets/psd.pdf 2021 ed : https://web.stanford.edu/~ouster/cgi-bin/aposd2ndEdExtract.pdf 复杂性 症状 变更放大：看似简单的变更需要在许多不同地方进行代码修改。 认知负荷：开发人员需要多少知识才能完成一项任务。较高]]></description>
 </item>
 </channel>
 </rss>
