@@ -3,9 +3,17 @@
         <title>spike014 site</title>
         <link>http://spike014.github.io/</link>
         <description>spike014 site</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>spike014</copyright><lastBuildDate>Sat, 23 Sep 2023 10:40:47 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>spike014</copyright><lastBuildDate>Sat, 07 Oct 2023 06:22:08 &#43;0800</lastBuildDate>
             <atom:link href="http://spike014.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>R.I.P. Father</title>
+    <link>http://spike014.github.io/posts/think/r.i.p.-father/</link>
+    <pubDate>Sat, 07 Oct 2023 06:22:08 &#43;0800</pubDate>
+    <author>spike014</author>
+    <guid>http://spike014.github.io/posts/think/r.i.p.-father/</guid>
+    <description><![CDATA[中秋国庆假期，原本是家人团聚的日子。但是在这个假期，我失去了我的父亲，从此成了一个没有爸爸的孩子。 这一天提前来的如此突然，以至于当我签下病危]]></description>
+</item>
+<item>
     <title>How to Define Engineer</title>
     <link>http://spike014.github.io/posts/think/how-to-define-engineer/</link>
     <pubDate>Sat, 23 Sep 2023 10:40:47 &#43;0800</pubDate>
@@ -116,14 +124,6 @@
     <author>spike014</author>
     <guid>http://spike014.github.io/posts/aboutsoftware-engineering-at-google/</guid>
     <description><![CDATA[《Software Engineering at Google》： 前言，序言 什么是软件工程？ EN: https://abseil.io/resources/swe-book/html/toc.html CN: https://qiangmzsx.github.io/Software-Engineering-at-Google/#/ 前言 技术的伟大之处在于，做一件事永远不会只有一种方法。相反，有一系列]]></description>
-</item>
-<item>
-    <title>软件设计哲学 6-21</title>
-    <link>http://spike014.github.io/posts/a-philosophy-of-software-design-6-21/</link>
-    <pubDate>Mon, 01 Aug 2022 11:52:39 &#43;0800</pubDate>
-    <author>spike014</author>
-    <guid>http://spike014.github.io/posts/a-philosophy-of-software-design-6-21/</guid>
-    <description><![CDATA[原书： 2018 ed : https://milkov.tech/assets/psd.pdf 2021 ed : https://web.stanford.edu/~ouster/cgi-bin/aposd2ndEdExtract.pdf 通用模块更深入 如果减少 API 中的方法数量而不降低其整体功能，则可能正在创建更多通用的方法。 在多少情况下会使用此方法？ 如果一]]></description>
 </item>
 </channel>
 </rss>
