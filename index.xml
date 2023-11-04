@@ -3,9 +3,17 @@
         <title>spike014 site</title>
         <link>http://spike014.github.io/</link>
         <description>spike014 site</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>spike014</copyright><lastBuildDate>Sat, 07 Oct 2023 06:22:08 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>spike014</copyright><lastBuildDate>Sat, 04 Nov 2023 20:31:35 &#43;0800</lastBuildDate>
             <atom:link href="http://spike014.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Why They Are So Powerful</title>
+    <link>http://spike014.github.io/posts/think/why-they-are-so-powerful/</link>
+    <pubDate>Sat, 04 Nov 2023 20:31:35 &#43;0800</pubDate>
+    <author>spike014</author>
+    <guid>http://spike014.github.io/posts/think/why-they-are-so-powerful/</guid>
+    <description><![CDATA[我认识的强者中，都有几个共同点(待补充，职业人间观察中 👀 ): 很会寻求帮助，很会寻求力量。 行动力十足，绝不拖延，说到做到。 Go and Ask for Help 先说我观察到]]></description>
+</item>
+<item>
     <title>R.I.P. Father</title>
     <link>http://spike014.github.io/posts/think/r.i.p.-father/</link>
     <pubDate>Sat, 07 Oct 2023 06:22:08 &#43;0800</pubDate>
@@ -116,14 +124,6 @@
     <author>spike014</author>
     <guid>http://spike014.github.io/posts/software-engineering-at-google-2/</guid>
     <description><![CDATA[《Software Engineering at Google》： 如何融入团队 知识共享 EN: https://abseil.io/resources/swe-book/html/toc.html CN: https://qiangmzsx.github.io/Software-Engineering-at-Google/#/ 一个好的事后总结应该包括以下内容： 事件的简要概述 事件的时间线，从发现、调查]]></description>
-</item>
-<item>
-    <title>谷歌软件工程之道-1</title>
-    <link>http://spike014.github.io/posts/aboutsoftware-engineering-at-google/</link>
-    <pubDate>Wed, 03 Aug 2022 11:43:02 &#43;0800</pubDate>
-    <author>spike014</author>
-    <guid>http://spike014.github.io/posts/aboutsoftware-engineering-at-google/</guid>
-    <description><![CDATA[《Software Engineering at Google》： 前言，序言 什么是软件工程？ EN: https://abseil.io/resources/swe-book/html/toc.html CN: https://qiangmzsx.github.io/Software-Engineering-at-Google/#/ 前言 技术的伟大之处在于，做一件事永远不会只有一种方法。相反，有一系列]]></description>
 </item>
 </channel>
 </rss>
