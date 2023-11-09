@@ -3,9 +3,17 @@
         <title>spike014 site</title>
         <link>http://spike014.github.io/</link>
         <description>spike014 site</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>spike014</copyright><lastBuildDate>Sat, 04 Nov 2023 20:31:35 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>spike014</copyright><lastBuildDate>Mon, 06 Nov 2023 22:34:21 &#43;0800</lastBuildDate>
             <atom:link href="http://spike014.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Low Key Rolling Into Hong Kong</title>
+    <link>http://spike014.github.io/posts/daily/low-key-rolling-into-hong-kong/</link>
+    <pubDate>Mon, 06 Nov 2023 22:34:21 &#43;0800</pubDate>
+    <author>spike014</author>
+    <guid>http://spike014.github.io/posts/daily/low-key-rolling-into-hong-kong/</guid>
+    <description><![CDATA[起因 想去办张香港的银行卡。加上昨天收到风声，以后内地去办会收紧，门槛会提高的意思，所以一看到之后，马上电话预约了一个银行，就明天了。 过程 出发]]></description>
+</item>
+<item>
     <title>Why They Are So Powerful</title>
     <link>http://spike014.github.io/posts/think/why-they-are-so-powerful/</link>
     <pubDate>Sat, 04 Nov 2023 20:31:35 &#43;0800</pubDate>
@@ -116,14 +124,6 @@
     <author>spike014</author>
     <guid>http://spike014.github.io/posts/example_from_twitter/</guid>
     <description><![CDATA[两个 Twitter 的典型操作： 发布 tweet：用户可以快速推送新消息到所有关注者，平均 4.6k request/sec，峰值约 12k request/sec； 主页时间]]></description>
-</item>
-<item>
-    <title>谷歌软件工程之道-2</title>
-    <link>http://spike014.github.io/posts/software-engineering-at-google-2/</link>
-    <pubDate>Fri, 05 Aug 2022 11:11:53 &#43;0800</pubDate>
-    <author>spike014</author>
-    <guid>http://spike014.github.io/posts/software-engineering-at-google-2/</guid>
-    <description><![CDATA[《Software Engineering at Google》： 如何融入团队 知识共享 EN: https://abseil.io/resources/swe-book/html/toc.html CN: https://qiangmzsx.github.io/Software-Engineering-at-Google/#/ 一个好的事后总结应该包括以下内容： 事件的简要概述 事件的时间线，从发现、调查]]></description>
 </item>
 </channel>
 </rss>
