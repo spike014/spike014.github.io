@@ -3,9 +3,17 @@
         <title>spike014 site</title>
         <link>http://spike014.github.io/</link>
         <description>spike014 site</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>spike014</copyright><lastBuildDate>Sun, 17 Dec 2023 10:07:28 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>spike014</copyright><lastBuildDate>Wed, 10 Jan 2024 00:53:15 &#43;0900</lastBuildDate>
             <atom:link href="http://spike014.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Hi! Osaka~ And you, Tokyo!</title>
+    <link>http://spike014.github.io/posts/daily/hi-osaka~-and-you-tokyo/</link>
+    <pubDate>Wed, 10 Jan 2024 00:53:15 &#43;0900</pubDate>
+    <author>spike014</author>
+    <guid>http://spike014.github.io/posts/daily/hi-osaka~-and-you-tokyo/</guid>
+    <description><![CDATA[几天前，日本之旅正式开始。 激动的心，颤抖的手。是期待，是兴奋。 要去到另一个国度，能感受那种异国人文能带来的冲击，对我来说是一种心灵的洗涤。 日]]></description>
+</item>
+<item>
     <title>Why We Can Not Reach an Agreement</title>
     <link>http://spike014.github.io/posts/think/why-we-can-not-reach-an-agreement/</link>
     <pubDate>Sun, 17 Dec 2023 10:07:28 &#43;0800</pubDate>
@@ -116,14 +124,6 @@
     <author>spike014</author>
     <guid>http://spike014.github.io/posts/tech/low-cost-maintenance-your-linux/</guid>
     <description><![CDATA[背景 现在国内各大小公司工作的程序员们，有些公司有专门的运维守着机器，有些则是由开发人员自己在兼职运维。 此间可谓人生百态，各种乱象丛生。 有 root 密]]></description>
-</item>
-<item>
-    <title>sql.DB 以何种方式进行初始化，保存，使用?</title>
-    <link>http://spike014.github.io/posts/how-to-initialize-sql.db-in-go/</link>
-    <pubDate>Tue, 06 Sep 2022 16:55:05 &#43;0800</pubDate>
-    <author>spike014</author>
-    <guid>http://spike014.github.io/posts/how-to-initialize-sql.db-in-go/</guid>
-    <description><![CDATA[起因: 《100 Go Mistakes and How to Avoid Them 》 “2.3 Misusing init functions”： In the init function, we will open a database using sql.Open. We will make this database a global variable that functions can later use. var db *sql.DB func init() { dataSourceName := os.Getenv(&#34;MYSQL_DATA_SOURCE_NAME&#34;) d, err := sql.Open(&#34;mysql&#34;, dataSourceName)]]></description>
 </item>
 </channel>
 </rss>
